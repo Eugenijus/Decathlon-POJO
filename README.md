@@ -28,8 +28,6 @@ The task is about Decathlon competition.
 
 ## Resource links:
 http://en.wikipedia.org/wiki/Decathlon (see formulas are at the end of the page)
-
 http://www.junit.org/ - JUnit
-
 http://www.jetbrains.com/ - IntelliJ IDEA download
 
