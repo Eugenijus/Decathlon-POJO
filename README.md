@@ -3,7 +3,7 @@
 This homework assignment is still Work in Progress.
 The task is about Decathlon competition.
 
-## TASK REQUIREMENTS:
+## 1. TASK REQUIREMENTS:
 
 - [ ] 1. The input of the Java program is a CSV-like text file (see the attachment).
 - [ ] 2. The task is to output an XML file with all athletes in ascending order of their places, 
@@ -26,7 +26,7 @@ The task is about Decathlon competition.
 - [ ] 15. Try to keep your code as readable as possible. We value code simplicity.
 - [ ] 16. Use object-oriented approach with design patterns where applicable.
 
-## Resource links:
+## 2. Resource links:
 http://en.wikipedia.org/wiki/Decathlon (see formulas are at the end of the page)
 http://www.junit.org/ - JUnit
 http://www.jetbrains.com/ - IntelliJ IDEA download
