@@ -27,7 +27,7 @@ The task is about Decathlon competition.
 - [ ] 16. Use object-oriented approach with design patterns where applicable.
 
 ## 2. Resource links:
-http://en.wikipedia.org/wiki/Decathlon (see formulas are at the end of the page)
-http://www.junit.org/ - JUnit
-http://www.jetbrains.com/ - IntelliJ IDEA download
++ http://en.wikipedia.org/wiki/Decathlon (see formulas are at the end of the page)
++ http://www.junit.org/ - JUnit
++ http://www.jetbrains.com/ - IntelliJ IDEA download
 
