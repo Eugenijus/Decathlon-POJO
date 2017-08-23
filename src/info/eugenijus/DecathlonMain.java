@@ -11,6 +11,8 @@ import info.eugenijus.model.Athlete;
 import info.eugenijus.model.Constants;
 import info.eugenijus.model.CustomTime;
 import info.eugenijus.model.Result;
+import info.eugenijus.strategy.FieldFormula;
+import info.eugenijus.strategy.TrackFormula;
 
 /**
  * Tutorials used:
@@ -85,7 +87,11 @@ public class DecathlonMain {
 		athlete.setName(resultsList.get(0));
 		
 		Result result = new Result();
-		result.parseAndSet(resultsList);
+		try{
+			result.parseAndSet(resultsList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		athlete.setResult(result);
 		System.out.println(athlete.toString());
 		
@@ -93,7 +99,7 @@ public class DecathlonMain {
 	
 	public static void main(String[] args) {
 		final String FOLDER = "test-data/";
-		boolean testFileRead = true;
+		boolean testFileRead = false;
 		if(testFileRead) {
 			DecathlonMain deca = new DecathlonMain();
 			System.out.println("========== Printing while parsing ============");
@@ -124,6 +130,29 @@ public class DecathlonMain {
 		System.out.println("time: " + time);
 		int result1000 = (int)Math.floor(0.03768f *  Math.pow((480-time), 1.85) );
 		System.out.println("Should be 1000: " + result1000);
+		
+		TrackFormula tf = new TrackFormula();
+		float[] eventResults = {11.756f, 52.58f, 16.29f, (4*60)+36.96f};
+		//each event should have score of 700 and total of 2800
+		System.out.println(tf.calculateScore(eventResults));
+		
+		FieldFormula ff = new FieldFormula();
+		//float[] sixFieldTimes = {longJump, shotPutThrow, highJump, discusThrow, poleVaultJump, javelinThrow};
+		float[] eventResults2 = {6.94f, 15.16f, 1.99f, 46.59f, 4.63f, 64.09f};
+		//each event should have score of 800 and total of 4800
+		System.out.println(ff.calculateScore(eventResults2));
+		
+		Result test1000Result = new Result();
+		//run100M, longJump, shotPutThrow, highJump, run400M, run110MHurdles, discusThrow, poleVaultJump, javelinThrow, run1500M
+		String[] resultsArr = {"Athlete1000", "10.395", "7.76", "18.4", "2.20", "46.17", "13.8", "56.17", "5.28", "77.19", "3:53.79"};
+		try {
+			test1000Result.parseAndSet(resultsArr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(test1000Result.toString());
+		System.out.println("test1000Result:\n" + test1000Result.getTotalScore());
+		//System.out.println("new Float(5.74352f) " + new Float(5.74352f));
 	}
 
 }

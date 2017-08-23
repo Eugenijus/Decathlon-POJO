@@ -22,6 +22,6 @@ public class Athlete {
 	
 	@Override
 	public String toString() {
-		return "Athlete:{" + getName() + Constants.COLON + result.toString() + "}";
+		return "Athlete:{" + getName() + Constants.COLON + Constants.TAB + result.toString() + "}";
 	}
 }

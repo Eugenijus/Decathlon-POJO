@@ -1,8 +1,12 @@
 package info.eugenijus.model;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class Result {
+import info.eugenijus.strategy.FieldFormula;
+import info.eugenijus.strategy.TrackFormula;
+
+public class Result implements Comparable<Result>{
 	private float run100M;
 	private float longJump;
 	private float shotPutThrow;
@@ -13,6 +17,8 @@ public class Result {
 	private float poleVaultJump;
 	private float javelinThrow;
 	private CustomTime run1500M;
+	
+	private int totalScore;
 
 	/* ================ START OF GETTERS & SETTERS ================ */
 
@@ -122,13 +128,28 @@ public class Result {
 		return sixFieldTimes ;
 	}
 	
-	public void parseAndSet(List<String> resultsList) {
+	/**
+	 * In order to work correctly resultsArr array should be submitted with times in this order: 
+	 * run100M, longJump, shotPutThrow, highJump, run400M, run110MHurdles, discusThrow, poleVaultJump, javelinThrow, run1500M
+	 * @param resultsArr
+	 */
+	public void parseAndSet(List<String> resultsList) throws Exception{
 		// resultsList.toArray(new String[0]) can also be used
 		String[] resultsArr = resultsList.toArray(new String[resultsList.size()]);
 		parseAndSet(resultsArr);
 	}
 
-	public void parseAndSet(String[] resultsArr) {
+	/**
+	 * In order to work correctly resultsArr array should be with length of 11
+	 * and submitted with NAME in 1st element and times in rest of elements in this order: 
+	 * NAME, run100M, longJump, shotPutThrow, highJump, run400M, run110MHurdles, discusThrow, poleVaultJump, javelinThrow, run1500M
+	 * @param resultsArr
+	 */
+	public void parseAndSet(String[] resultsArr) throws Exception{
+		if(resultsArr.length != 11) {
+			throw new Exception("resultsArr array is not of length 11! resultArr.length=" 
+					+ resultsArr.length + " resultsArr:" + Arrays.toString(resultsArr));
+		}
 		setRun100M(parseStrToFloat(resultsArr, 1));
 		setLongJump(parseStrToFloat(resultsArr, 2));
 		setShotPutThrow(parseStrToFloat(resultsArr, 3));
@@ -162,12 +183,43 @@ public class Result {
 		}
 		return f;
 	}
+	
+	public int getTotalScore() {
+		if(this.totalScore != 0) {
+			return this.totalScore;
+		} else {
+			this.totalScore = calculateTotalScore();
+		}
+		return this.totalScore;
+	}
+	
+	private int calculateTotalScore() {
+		int score = 0;
+		TrackFormula trackFormula = new TrackFormula();
+		FieldFormula fieldFormula = new FieldFormula();
+		score += trackFormula.calculateScore(getFourTrackEvents());
+		score += fieldFormula.calculateScore(getSixFieldEvents());
+		return score;
+	}
+
+	@Override
+	public int compareTo(Result o) {
+		int score1 = getTotalScore();
+		int score2 = o.getTotalScore();
+		if(score1 > score2) {
+			return 1;
+		}
+		if(score2 > score1) {
+			return -1;
+		}
+		return 0;
+	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		String splitBy = Constants.SEMICOLON + " ";
-		sb.append(Constants.TAB + "[").append(getRun100M()).append(splitBy)
+		sb.append("[").append(getRun100M()).append(splitBy)
 			.append(getLongJump()).append(splitBy)
 			.append(getShotPutThrow()).append(splitBy)
 			.append(getHighJump()).append(splitBy)
