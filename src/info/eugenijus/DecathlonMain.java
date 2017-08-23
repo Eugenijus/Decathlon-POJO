@@ -22,30 +22,18 @@ import info.eugenijus.strategy.TrackFormula;
  * @author Eugenijus Sabaliauskas
  */
 public class DecathlonMain {
-	private static final char QUOTE = '"';
-
+	
 	public List<String> parseDocument(String filename) {
 		List<String> list = new ArrayList<>();
 		String line = "";
-
+		//reading filename
 		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
 			while ((line = br.readLine()) != null) {
 				line = line.trim();
 				String[] resultLine = line.split(Constants.SPLITTER);
-				if (resultLine.length > 0) {
-					String athlete = (resultLine[0]);
-					System.out.print(athlete + "[");
-					int limit = resultLine.length - 1;
-					for (int i = 1; i < limit; i++) {
-						System.out.print(resultLine[i] + ",");
-					}
-					if (resultLine[limit] != null) {
-						System.out.print(resultLine[limit].trim());
-					}
-					System.out.println("]");
-				}
-								
 				list.add(Arrays.toString(resultLine));
+				// PRINTING
+				printNicelyFromArray(resultLine);	
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -77,11 +65,30 @@ public class DecathlonMain {
 		for (String str : list) {
 			System.out.println(str);
 		}
+	}	
+
+	private void printNicelyFromArray(String[] resultLine) {
+		if (resultLine.length > 0) {
+			String athlete = (resultLine[0]);
+			System.out.print(athlete + "[");
+			int limit = resultLine.length - 1;
+			for (int i = 1; i < limit; i++) {
+				System.out.print(resultLine[i] + ",");
+			}
+			if (resultLine[limit] != null) {
+				System.out.print(resultLine[limit].trim());
+			}
+			System.out.println("]");
+		}
 	}
 	
-	private void printListNicely(List<String> resultsList) {
+	/**
+	 * Prints athlete's name and results
+	 * @param resultsList - athlete's name and list of results of a single athlete
+	 * @return athlete - Athlete object
+	 */
+	private Athlete printListNicely(List<String> resultsList) {
 		//System.out.println("printListNicely(resultsList) where resultsList = " + resultsList.toString());
-		
 		//optimistic approach without any checks
 		Athlete athlete = new Athlete();
 		athlete.setName(resultsList.get(0));
@@ -94,12 +101,12 @@ public class DecathlonMain {
 		}
 		athlete.setResult(result);
 		System.out.println(athlete.toString());
-		
+		return athlete;
 	}
 	
 	public static void main(String[] args) {
 		final String FOLDER = "test-data/";
-		boolean testFileRead = false;
+		boolean testFileRead = true;
 		if(testFileRead) {
 			DecathlonMain deca = new DecathlonMain();
 			System.out.println("========== Printing while parsing ============");
