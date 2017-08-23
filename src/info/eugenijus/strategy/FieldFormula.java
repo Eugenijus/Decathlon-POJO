@@ -38,15 +38,19 @@ public class FieldFormula implements ScoringStrategy {
 		int score = 0;
 		if(eventName.equals(Constants.FIELD_LONG_JUMP) || 
 				eventName.equals(Constants.FIELD_HIGH_JUMP) || eventName.equals(Constants.FIELD_POLE_JUMP)) {
-			distance = distance * 100; //because measured in centimeters instead of meters
+			double distanceCM = (double)(distance * 100); //because measured in centimeters instead of meters
+			int difference = (int) (distanceCM - Constants.COLUMN_B.get(eventName));
+			double diffToPower = Math.pow(difference, Constants.COLUMN_C.get(eventName));
+			score = (int)Math.floor(Constants.COLUMN_A.get(eventName) * diffToPower);
+		} else {
+			double difference = distance - Constants.COLUMN_B.get(eventName);
+			double diffToPower = Math.pow(difference, Constants.COLUMN_C.get(eventName));
+			score = (int)Math.floor(Constants.COLUMN_A.get(eventName) * diffToPower );
 		}
-		double difference = distance - Constants.COLUMN_B.get(eventName);
-		double diffToPower = Math.pow(difference, Constants.COLUMN_C.get(eventName));
-		score = (int)Math.floor(Constants.COLUMN_A.get(eventName) * Math.pow(distance - Constants.COLUMN_B.get(eventName), 
-				Constants.COLUMN_C.get(eventName))  );
 		if(true) {
-			System.out.println("eventName: " + eventName +'\t'+"distance:  " + distance +'\t'+" score: " + score 
-					+ " =" + Constants.COLUMN_C.get(eventName) + " * (" + difference + ")^"+diffToPower);
+			System.out.println("eventName: " + eventName + "  distance:  " + distance +'\t'+" score: " + score 
+					+ " = " + Constants.COLUMN_A.get(eventName) + " * (" + distance + "-" + Constants.COLUMN_B.get(eventName)
+					+ ")^" + Constants.COLUMN_C.get(eventName));
 		}
 		return score;
 	}

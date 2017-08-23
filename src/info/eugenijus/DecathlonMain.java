@@ -143,7 +143,7 @@ public class DecathlonMain {
 		System.out.println(ff.calculateScore(eventResults2));
 		
 		Result test1000Result = new Result();
-		//run100M, longJump, shotPutThrow, highJump, run400M, run110MHurdles, discusThrow, poleVaultJump, javelinThrow, run1500M
+		//NAME, run100M, longJump, shotPutThrow, highJump, run400M, run110MHurdles, discusThrow, poleVaultJump, javelinThrow, run1500M
 		String[] resultsArr = {"Athlete1000", "10.395", "7.76", "18.4", "2.20", "46.17", "13.8", "56.17", "5.28", "77.19", "3:53.79"};
 		try {
 			test1000Result.parseAndSet(resultsArr);
@@ -151,8 +151,11 @@ public class DecathlonMain {
 			e.printStackTrace();
 		}
 		System.out.println(test1000Result.toString());
-		System.out.println("test1000Result:\n" + test1000Result.getTotalScore());
+		System.out.println("test1000Result: " + test1000Result.getTotalScore());
 		//System.out.println("new Float(5.74352f) " + new Float(5.74352f));
+		System.out.println();
+		System.out.println("longJump of 60.4M: " + ff.calculatePerEvent(Constants.FIELD_LONG_JUMP, 6.9f));
+		System.out.println("javelinThrow of 690cm: " + ff.calculatePerEvent(Constants.FIELD_JAVELIN_THROW, 60.4f));
 	}
 
 }
