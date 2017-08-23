@@ -150,16 +150,22 @@ public class DecathlonMain {
 		System.out.println(ff.calculateScore(eventResults2));
 		
 		Result test1000Result = new Result();
+		Result ashtonResult = new Result();
 		//NAME, run100M, longJump, shotPutThrow, highJump, run400M, run110MHurdles, discusThrow, poleVaultJump, javelinThrow, run1500M
 		String[] resultsArr = {"Athlete1000", "10.395", "7.76", "18.4", "2.20", "46.17", "13.8", "56.17", "5.28", "77.19", "3:53.79"};
+		String[] ashton = {"Ashton Eaton", "10.23", "7.88", "14.52", "2.01", "45.0", "13.69", "43.34", "5.2", "63.63", "4:17.52"};
 		try {
 			test1000Result.parseAndSet(resultsArr);
+			ashtonResult.parseAndSet(ashton);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println(test1000Result.toString());
 		System.out.println("test1000Result: " + test1000Result.getTotalScore());
 		//System.out.println("new Float(5.74352f) " + new Float(5.74352f));
+		System.out.println();
+		System.out.println(ashtonResult.toString());
+		System.out.println("ashtonResult: " + ashtonResult.getTotalScore());
 		System.out.println();
 		System.out.println("longJump of 60.4M: " + ff.calculatePerEvent(Constants.FIELD_LONG_JUMP, 6.9f));
 		System.out.println("javelinThrow of 690cm: " + ff.calculatePerEvent(Constants.FIELD_JAVELIN_THROW, 60.4f));
