@@ -21,7 +21,7 @@ public class Athlete {
 	}
 	
 	@Override
-	public String toString() {		
-		return "Athlete obj {" + getName() + ": " + result.toString() + "}";
+	public String toString() {
+		return "Athlete:{" + getName() + Constants.COLON + result.toString() + "}";
 	}
 }
