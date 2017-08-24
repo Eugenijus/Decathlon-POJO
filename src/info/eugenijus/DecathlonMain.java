@@ -12,6 +12,7 @@ import info.eugenijus.model.Result;
 import info.eugenijus.strategy.FieldFormula;
 import info.eugenijus.strategy.PlaceFormula;
 import info.eugenijus.strategy.TrackFormula;
+import info.eugenijus.utils.HTMLWriter;
 import info.eugenijus.utils.JSONWriter;
 import info.eugenijus.utils.SSVParser;
 import info.eugenijus.utils.TxtWriter;
@@ -162,7 +163,7 @@ public class DecathlonMain {
 		System.out.println("longJump of 60.4M: " + ff.calculatePerEvent(Constants.FIELD_LONG_JUMP, 6.9f));
 		System.out.println("javelinThrow of 690cm: " + ff.calculatePerEvent(Constants.FIELD_JAVELIN_THROW, 60.4f));
 				
-		athletes.add(new Athlete("test1000Result", test1000Result));
+		//athletes.add(new Athlete("test1000Result", test1000Result));
 		athletes.add(new Athlete("test9990Result", test1000Result));
 		athletes.add(new Athlete("Ashton Eaton", ashtonResult));
 		athletes.add(new Athlete("Ashton Eaton2", ashtonResult));
@@ -173,7 +174,17 @@ public class DecathlonMain {
 		JSONWriter jsonWriter = new JSONWriter();
 		jsonWriter.writeToFile(Constants.TEST_FOLDER + "output.json", athletes);
 		
+		String xmlFilename = "output.xml";
+		String xslFilename = "style2.xsl";
+		String htmlFilename = "output.html";
+		//tested with https://www.w3schools.com/xml/xml_validator.asp
 		XMLWriter xmlWriter = new XMLWriter();
-		xmlWriter.writeToFile(Constants.TEST_FOLDER + "output.xml", athletes);
+		xmlWriter.setStylesheetFile(xslFilename);
+		boolean createdXML = xmlWriter.writeToFile(Constants.TEST_FOLDER + xmlFilename, athletes);
+		
+		if(createdXML) {
+			HTMLWriter htmlWriter = new HTMLWriter(Constants.TEST_FOLDER);
+			htmlWriter.convertXMLtoHTML(xmlFilename, xslFilename, htmlFilename);
+		}		
 	}
 }

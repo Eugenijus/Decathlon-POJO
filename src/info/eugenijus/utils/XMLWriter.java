@@ -9,6 +9,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -17,15 +18,18 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.ProcessingInstruction;
 
 import info.eugenijus.model.Athlete;
 import info.eugenijus.model.Result;
 
 public class XMLWriter implements DocumentWriter {
-	public String folder;
+	private String folder;
+	private String stylesheetFile;
 	
 	public XMLWriter() {
 		folder = "";
+		stylesheetFile = "";
 	}
 	
 	/**
@@ -37,9 +41,16 @@ public class XMLWriter implements DocumentWriter {
 		this.folder = folder;
 	}
 	
+	public XMLWriter(String folder, String styleSheet) {
+		this.folder = folder;
+		this.stylesheetFile = styleSheet;
+	}
+	
 	/**
-	 * Based on tutorial:
+	 * Based on tutorial and material:
 	 * http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
+	 * https://www.w3schools.com/xml/xsl_intro.asp
+	 * https://www.w3schools.com/xml/xml_validator.asp
 	 */
 	@Override
 	public boolean writeToFile(String filename, List<Athlete> athleteList) {
@@ -54,13 +65,25 @@ public class XMLWriter implements DocumentWriter {
 				// root element
 				Document doc = docBuilder.newDocument();
 				Element rootElement = doc.createElement("athletes");
-				doc.appendChild(rootElement);
+				if(stylesheetFile.length() > 1) {
+					doc.setXmlStandalone(true);
+					ProcessingInstruction processingInstruction = doc.createProcessingInstruction("xml-stylesheet", 
+							"type=\"text/xsl\" href=\"" + stylesheetFile + "\"");
+					doc.appendChild(rootElement);					
+					doc.insertBefore(processingInstruction, rootElement);
+				} else {
+					doc.appendChild(rootElement);
+				}
+				
 				/* now lets iterate through athletes and their results */
 				for(Athlete athlete : athleteList) {
 					// single athlete
 					Element athleteElement = doc.createElement("athlete");
 					rootElement.appendChild(athleteElement);
-					athleteElement.setAttribute("place", athlete.getPlace());
+					
+					Element place = doc.createElement("place");
+					place.appendChild(doc.createTextNode(athlete.getPlace()));
+					athleteElement.appendChild(place);
 					
 					Element name = doc.createElement("name");
 					name.appendChild(doc.createTextNode(athlete.getName()));
@@ -123,26 +146,32 @@ public class XMLWriter implements DocumentWriter {
 				// write the content into xml file
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
 				Transformer transformer = transformerFactory.newTransformer();
+				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+				transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 				DOMSource sourceDOM = new DOMSource(doc);
 				StreamResult resultXML = new StreamResult(new File(filename));
 				transformer.transform(sourceDOM, resultXML);
 				
-				// Output to console for testing
-				StreamResult resultXML2 = new StreamResult(System.out);
-				transformer.transform(sourceDOM, resultXML2);
 			} catch (ParserConfigurationException e1) {
 				e1.printStackTrace();
 			} catch (TransformerException tfe) {
 				tfe.printStackTrace();
 			}
-			System.out.println("Done writing to: " + filename);
+			System.out.println("Done writing XML to: " + filename);
 			isSuccess = true;
 		} catch (IOException e) {
 			isSuccess = false;
-			System.out.println("Couldn't write to: " + filename);
+			System.out.println("Couldn't write XML to: " + filename);
 			e.printStackTrace();
 		}
 		return isSuccess;
 	}
+	
+	public String getStylesheetFile() {
+		return stylesheetFile;
+	}
 
+	public void setStylesheetFile(String stylesheetFile) {
+		this.stylesheetFile = stylesheetFile;
+	}
 }

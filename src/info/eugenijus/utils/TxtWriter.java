@@ -37,11 +37,11 @@ public class TxtWriter implements DocumentWriter {
 				builder.append(athlete.toString()).append('\r').append('\n');
 			}
 			bw.write(builder.toString());
-			System.out.println("Done writing to: " + filename);
+			System.out.println("Done writing TXT to: " + filename);
 			isSuccess = true;
 		} catch (IOException e) {
 			isSuccess = false;
-			System.out.println("Couldn't write to: " + filename);
+			System.out.println("Couldn't write TXT to: " + filename);
 			e.printStackTrace();
 		}
 		return isSuccess;
