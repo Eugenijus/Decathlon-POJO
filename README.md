@@ -41,8 +41,4 @@ Progress: 11 / 16
 - Testing file is provided: Decathlon-POJO/**test-data/Decathlon_input.txt**
 
 ## Images
-<<<<<<< HEAD
 ![Example of HTML output](/img/2017-08-24_22_51_41-HTML-example.png)
-=======
-![Example of HTML output](/img/2017-08-24 22_51_41-Mozilla Firefox.png)
->>>>>>> origin/master
