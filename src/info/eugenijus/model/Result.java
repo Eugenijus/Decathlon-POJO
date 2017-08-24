@@ -6,6 +6,11 @@ import java.util.List;
 import info.eugenijus.strategy.FieldFormula;
 import info.eugenijus.strategy.TrackFormula;
 
+/**
+ * http://www.theregister.co.uk/Design/page/hub/ibm2016/#five
+ * @author Eugenijus Sabaliauskas
+ *
+ */
 public class Result implements Comparable<Result>{
 	private float run100M;
 	private float longJump;

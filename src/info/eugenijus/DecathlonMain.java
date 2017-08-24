@@ -1,10 +1,5 @@
 package info.eugenijus;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import info.eugenijus.model.Athlete;
@@ -13,6 +8,7 @@ import info.eugenijus.model.CustomTime;
 import info.eugenijus.model.Result;
 import info.eugenijus.strategy.FieldFormula;
 import info.eugenijus.strategy.TrackFormula;
+import info.eugenijus.utils.SSVParser;
 
 /**
  * Tutorials used:
@@ -23,64 +19,11 @@ import info.eugenijus.strategy.TrackFormula;
  */
 public class DecathlonMain {
 	
-	public List<String> parseDocument(String filename) {
-		List<String> list = new ArrayList<>();
-		String line = "";
-		//reading filename
-		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-			while ((line = br.readLine()) != null) {
-				line = line.trim();
-				String[] resultLine = line.split(Constants.SPLITTER);
-				list.add(Arrays.toString(resultLine));
-				// PRINTING
-				printNicelyFromArray(resultLine);	
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-	
-	public List<List<String>> parseDocumentToLists(String filename) {
-		List<List<String>> listOfLists = new ArrayList<>();
-		List<String> list;
-		String line = "";
-		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-			while ((line = br.readLine()) != null) {
-				line = line.trim();
-				String[] resultLine = line.split(Constants.SPLITTER);
-				list = new ArrayList<>();
-				for(String str : resultLine) {
-					list.add(str);
-				}
-				listOfLists.add(list);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return listOfLists;
-	}
-	
 	private void printList(List<String> list) {
 		for (String str : list) {
 			System.out.println(str);
 		}
 	}	
-
-	private void printNicelyFromArray(String[] resultLine) {
-		if (resultLine.length > 0) {
-			String athlete = (resultLine[0]);
-			System.out.print(athlete + "[");
-			int limit = resultLine.length - 1;
-			for (int i = 1; i < limit; i++) {
-				System.out.print(resultLine[i] + ",");
-			}
-			if (resultLine[limit] != null) {
-				System.out.print(resultLine[limit].trim());
-			}
-			System.out.println("]");
-		}
-	}
 	
 	/**
 	 * Prints athlete's name and results
@@ -109,12 +52,13 @@ public class DecathlonMain {
 		boolean testFileRead = true;
 		if(testFileRead) {
 			DecathlonMain deca = new DecathlonMain();
+			SSVParser parser = new SSVParser();
 			System.out.println("========== Printing while parsing ============");
-			List<String> listOfResults = deca.parseDocument(FOLDER + "Decathlon_input.txt");
+			List<String> listOfResults = parser.parseDocument(FOLDER + "Decathlon_input.txt");
 			System.out.println("========== Printing from a list ========================");
 			deca.printList(listOfResults);
 			System.out.println("========== Advanced printing from a list ==========================");
-			List<List<String>> listOfLists = deca.parseDocumentToLists(FOLDER + "Decathlon_input.txt");
+			List<List<String>> listOfLists = parser.parseDocumentToLists(FOLDER + "Decathlon_input.txt");
 			for(List<String> result : listOfLists) {
 				deca.printListNicely(result);
 			}
