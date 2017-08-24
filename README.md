@@ -5,6 +5,8 @@ The task is about Decathlon competition.
 
 ## 1. TASK REQUIREMENTS:
 
+Progress: 7 / 16
+
 - [x] 1. The input of the Java program is a CSV-like text file (see the attachment).
 - [ ] 2. The task is to output an XML file with all athletes in ascending order (1, 2, 3...) of their places, 
 - [x] 3. containing all the input data plus **total score** 
