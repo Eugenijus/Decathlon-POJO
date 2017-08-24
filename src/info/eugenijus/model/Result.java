@@ -24,7 +24,14 @@ public class Result implements Comparable<Result>{
 	private CustomTime run1500M;
 	
 	private int totalScore;
-
+	
+	public Result() {
+		//regular constructor
+	}
+	
+	public Result(String[] resultLine) throws Exception {
+		parseAndSet(resultLine);
+	}
 	/* ================ START OF GETTERS & SETTERS ================ */
 
 	public float getRun100M() {
@@ -209,12 +216,12 @@ public class Result implements Comparable<Result>{
 
 	@Override
 	public int compareTo(Result o) {
-		int score1 = getTotalScore();
+		int score1 = this.getTotalScore();
 		int score2 = o.getTotalScore();
 		if(score1 > score2) {
 			return 1;
 		}
-		if(score2 > score1) {
+		if(score1 < score2) {
 			return -1;
 		}
 		return 0;
@@ -223,8 +230,9 @@ public class Result implements Comparable<Result>{
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		String splitBy = Constants.SEMICOLON + " ";
-		sb.append("[").append(getRun100M()).append(splitBy)
+		String splitBy = "\"" + Constants.COMMA + " \"";
+		sb.append("\"score\": ").append("\"").append(getTotalScore()).append("\", ");
+		sb.append("\"results\": [\"").append(getRun100M()).append(splitBy)
 			.append(getLongJump()).append(splitBy)
 			.append(getShotPutThrow()).append(splitBy)
 			.append(getHighJump()).append(splitBy)
@@ -233,7 +241,7 @@ public class Result implements Comparable<Result>{
 			.append(getDiscusThrow()).append(splitBy)
 			.append(getPoleVaultJump()).append(splitBy)
 			.append(getJavelinThrow()).append(splitBy)
-			.append(getRun1500M().toString()).append("]");
+			.append(getRun1500M().toString()).append("\"]");
 		return sb.toString();
 	}
 }

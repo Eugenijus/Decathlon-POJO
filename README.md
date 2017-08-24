@@ -8,7 +8,7 @@ The task is about Decathlon competition.
 - [x] 1. The input of the Java program is a CSV-like text file (see the attachment).
 - [ ] 2. The task is to output an XML file with all athletes in ascending order (1, 2, 3...) of their places, 
 - [x] 3. containing all the input data plus **total score** 
-- [ ] 4. and the **place** in the competition (in case of equal scores, share the places, e.g. 3-4 and 3-4 instead of 3 and 4).
+- [x] 4. and the **place** in the competition (in case of equal scores, share the places, e.g. 3-4 and 3-4 instead of 3 and 4).
 - [ ] 5. The **Input** and **output** file names should be provided as parameters to the Java application at the startup.
 - [ ] 6. Application should ask for those parameters itself.  
 .  

@@ -12,10 +12,10 @@ import info.eugenijus.model.Athlete;
  * http://www.mkyong.com/java/how-to-write-to-file-in-java-bufferedwriter-example/
  * @author Eugenijus Sabaliauskas
  */
-public class TxtWriter implements DocumentWriter {
+public class JSONWriter implements DocumentWriter {
 	public String folder;
 	
-	public TxtWriter() {
+	public JSONWriter() {
 		folder = "";
 	}
 	
@@ -24,18 +24,28 @@ public class TxtWriter implements DocumentWriter {
 	 * but make sure filename is just a file name, not the full path
 	 * @param folder
 	 */
-	public TxtWriter(String folder) {
+	public JSONWriter(String folder) {
 		this.folder = folder;
 	}
 
+	/**
+	 * This JSON writer outputs Athlete object and results as long as Result#toString() is also in JSON format<br/>
+	 * Hence this is very optimistic implementation
+	 * @param folder
+	 */
 	@Override
 	public boolean writeToFile(String filename,  List<Athlete> results) {
 		boolean isSuccess = false;
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(folder + filename))) {
 			StringBuilder builder = new StringBuilder();
-			for(Athlete athlete : results) {
-				builder.append(athlete.toString()).append('\r').append('\n');
+			builder.append("{\"athletes\":{");
+			for(int i=0; i<results.size()-1; i++){
+				builder.append("\"a\":");
+				builder.append(results.get(i).toString()).append(",").append('\r').append('\n');
 			}
+			builder.append("\"a\":");
+			builder.append(results.get(results.size()-1).toString()).append('\r').append('\n');
+			builder.append("} }");
 			bw.write(builder.toString());
 			System.out.println("Done writing to: " + filename);
 			isSuccess = true;

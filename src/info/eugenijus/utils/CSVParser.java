@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import info.eugenijus.model.Athlete;
 import info.eugenijus.model.Constants;
+import info.eugenijus.model.Result;
 
 /**
  * Parses file with decathlon events and converts to lists or arrays to be used later<br/>
@@ -38,7 +40,7 @@ public class CSVParser implements DocumentParser {
 	
 	/**
 	 * Parses file and creates list of Strings of decathlon event results (distances, times) 
-	 * where String represents all 10 results of single athelete<br/>
+	 * where first String represents name and other 10 Strings are results of single athelete<br/>
 	 * @return List<String> list 
 	 */
 	@Override
@@ -59,6 +61,35 @@ public class CSVParser implements DocumentParser {
 		}
 		return list;
 	}
+	
+	/**
+	 * Parses file and creates list of Athlete objects<br/>
+	 * @return List<String> list 
+	 */
+	public List<Athlete> parseDocumentToAthletes(String filename) {
+		List<Athlete> list = new ArrayList<>();
+		String line = "";
+		//reading filename
+		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+			while ((line = br.readLine()) != null) {
+				line = line.trim();
+				String[] resultLine = line.split(separator);
+				Athlete athlete = new Athlete();
+				athlete.setName(resultLine[0]);
+				try {
+					athlete.setResult(new Result(resultLine));
+				} catch (Exception e) {
+					System.out.println("Couldn't parse resultLine.");
+					e.printStackTrace();
+				}
+				list.add(athlete);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 
 	/**
 	 * Parses file and creates list of lists of decathlon event results (distances, times) where one single result is String<br/>

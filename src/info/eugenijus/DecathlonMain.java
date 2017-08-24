@@ -1,6 +1,7 @@
 package info.eugenijus;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import info.eugenijus.model.Athlete;
@@ -8,6 +9,7 @@ import info.eugenijus.model.Constants;
 import info.eugenijus.model.CustomTime;
 import info.eugenijus.model.Result;
 import info.eugenijus.strategy.FieldFormula;
+import info.eugenijus.strategy.PlaceFormula;
 import info.eugenijus.strategy.TrackFormula;
 import info.eugenijus.utils.DocumentWriter;
 import info.eugenijus.utils.SSVParser;
@@ -52,14 +54,23 @@ public class DecathlonMain {
 	
 	public static void main(String[] args) {
 		final String FOLDER = "test-data/";
+		List<Athlete> athletes = new LinkedList<>();
 		boolean testFileRead = true;
+		
 		if(testFileRead) {
 			DecathlonMain deca = new DecathlonMain();
 			SSVParser parser = new SSVParser();
+			
 			System.out.println("========== Printing while parsing ============");
 			List<String> listOfResults = parser.parseDocument(FOLDER + "Decathlon_input.txt");
+			
 			System.out.println("========== Printing from a list ========================");
 			deca.printList(listOfResults);
+			
+			System.out.println("========== Parsing from file to List<Athlete> ============");
+			List<Athlete> listOfAthletes = parser.parseDocumentToAthletes(FOLDER + "Decathlon_input.txt");
+			athletes.addAll(listOfAthletes);
+			
 			System.out.println("========== Advanced printing from a list ==========================");
 			List<List<String>> listOfLists = parser.parseDocumentToLists(FOLDER + "Decathlon_input.txt");
 			for(List<String> result : listOfLists) {
@@ -118,10 +129,15 @@ public class DecathlonMain {
 		System.out.println("longJump of 60.4M: " + ff.calculatePerEvent(Constants.FIELD_LONG_JUMP, 6.9f));
 		System.out.println("javelinThrow of 690cm: " + ff.calculatePerEvent(Constants.FIELD_JAVELIN_THROW, 60.4f));
 		
-		List<Athlete> athletes = new ArrayList<>();
+		
+		
 		athletes.add(new Athlete("test1000Result", test1000Result));
+		athletes.add(new Athlete("test9990Result", test1000Result));
 		athletes.add(new Athlete("Ashton Eaton", ashtonResult));
-		TxtWriter writer = new TxtWriter();
+		athletes.add(new Athlete("Ashton Eaton2", ashtonResult));
+		PlaceFormula placement = new PlaceFormula();
+		placement.markPlaces(athletes);
+		TxtWriter writer = new TxtWriter(Constants.TEST_FOLDER);
 		writer.writeToFile("Decathlon_output.txt", athletes);
 		
 	}
