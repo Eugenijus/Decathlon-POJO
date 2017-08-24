@@ -41,6 +41,7 @@ public class TxtWriter implements DocumentWriter {
 			isSuccess = true;
 		} catch (IOException e) {
 			isSuccess = false;
+			System.out.println("Couldn't write to: " + filename);
 			e.printStackTrace();
 		}
 		return isSuccess;

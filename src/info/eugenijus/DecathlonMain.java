@@ -12,8 +12,10 @@ import info.eugenijus.model.Result;
 import info.eugenijus.strategy.FieldFormula;
 import info.eugenijus.strategy.PlaceFormula;
 import info.eugenijus.strategy.TrackFormula;
+import info.eugenijus.utils.JSONWriter;
 import info.eugenijus.utils.SSVParser;
 import info.eugenijus.utils.TxtWriter;
+import info.eugenijus.utils.XMLWriter;
 
 /**
  * Tutorials used:
@@ -168,6 +170,10 @@ public class DecathlonMain {
 		placement.markPlaces(athletes);
 		TxtWriter writer = new TxtWriter();
 		writer.writeToFile(outputFile, athletes);
+		JSONWriter jsonWriter = new JSONWriter();
+		jsonWriter.writeToFile(Constants.TEST_FOLDER + "output.json", athletes);
 		
+		XMLWriter xmlWriter = new XMLWriter();
+		xmlWriter.writeToFile(Constants.TEST_FOLDER + "output.xml", athletes);
 	}
 }
