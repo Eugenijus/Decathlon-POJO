@@ -20,7 +20,7 @@ Progress: 11 / 16
 - [x] 10. No external libraries are allowed in addition to the Java standard API except JUnit.
 - [ ] 11. Gradle should be used as building tool.
 - [x] 12. Recommended java version is 7, but not mandatory.
-- [ ] 13. Please zip your code together with the project file. Keep in mind that we are going to run both your program and the tests.
+- [ ] 13. Please zip your code together with the project file. Keep in mind that we are going to run both your program and the tests.  
 .  
 - [ ] 14. It is preferred that IntelliJ is used as IDEA.
 - [ ] 15. Try to keep your code as readable as possible. We value code simplicity.
