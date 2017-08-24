@@ -56,7 +56,9 @@ public class CSVParser implements DocumentParser {
 				// PRINTING FOR TESTING ONLY
 				printNicelyFromArray(resultLine);	
 			}
+			System.out.println("Done parsing file: " + filename);
 		} catch (IOException e) {
+			System.out.println("Couldn't parse file: " + filename);
 			e.printStackTrace();
 		}
 		return list;
@@ -84,7 +86,9 @@ public class CSVParser implements DocumentParser {
 				}
 				list.add(athlete);
 			}
+			System.out.println("Done parsing file: " + filename);
 		} catch (IOException e) {
+			System.out.println("Couldn't parse file: " + filename);
 			e.printStackTrace();
 		}
 		return list;
@@ -110,9 +114,11 @@ public class CSVParser implements DocumentParser {
 				}
 				listOfLists.add(list);
 			}
+			System.out.println("Done parsing file: " + filename);
 		} catch (IOException e) {
+			System.out.println("Couldn't parse file: " + filename);
 			e.printStackTrace();
-		}
+		}		
 		return listOfLists;
 	}
 	

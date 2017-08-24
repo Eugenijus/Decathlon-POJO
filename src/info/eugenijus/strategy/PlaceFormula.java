@@ -1,11 +1,8 @@
 package info.eugenijus.strategy;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 
 import info.eugenijus.model.Athlete;
@@ -30,27 +27,22 @@ public class PlaceFormula {
 			return;
 		}
 		Set<Athlete> list = new HashSet<Athlete>();
-		//go through the list
-		//compare i=0 and j=1
-		//if places are same
-		//then add to the list
-		//when next pair is not equal, then process the list
 		int foundSame = 0;
 
-		System.out.println(">>>> fixSamePlaces of " + athletes.size());
+		/** 
+		 * 1. go through the list
+		 * 2. compare i=0 and j=1,
+		 * 3. if places are same, then add to the list
+		 * 4. when next pair is not equal, then process the list and empty it
+		 */
 		int place1 = 0;
 		int place2 = 0;
 		for(int i=0, j=1; j<athletes.size(); i++, j++) {
 			place1 = Integer.valueOf(athletes.get(i).getResult().getTotalScore());
 			place2 = Integer.valueOf(athletes.get(j).getResult().getTotalScore());
-			System.out.println(">>>> places: " + place1 + " " + place2);
 			if(place1 == place2) {				
 				list.add(athletes.get(i));
 				list.add(athletes.get(j));
-				System.out.println("THESE HAVE SAME SCORE:");
-				System.out.println(">:" + athletes.get(i));
-				System.out.println(">:" + athletes.get(j));
-				System.out.println("---------------------------------------------------");
 				foundSame++;
 			} else {
 				if(foundSame > 0) {

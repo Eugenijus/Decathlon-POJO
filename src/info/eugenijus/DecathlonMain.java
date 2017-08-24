@@ -1,6 +1,7 @@
 package info.eugenijus;
 
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +12,6 @@ import info.eugenijus.model.Result;
 import info.eugenijus.strategy.FieldFormula;
 import info.eugenijus.strategy.PlaceFormula;
 import info.eugenijus.strategy.TrackFormula;
-import info.eugenijus.utils.DocumentWriter;
 import info.eugenijus.utils.SSVParser;
 import info.eugenijus.utils.TxtWriter;
 
@@ -51,28 +51,59 @@ public class DecathlonMain {
 		System.out.println(athlete.toString());
 		return athlete;
 	}
-	
+		
 	public static void main(String[] args) {
-		final String FOLDER = "test-data/";
+		String inputFile = Constants.TEST_FOLDER + "Decathlon_input.txt";
+		String outputFile = Constants.TEST_FOLDER  + "Decathlon_output.txt";
 		List<Athlete> athletes = new LinkedList<>();
 		boolean testFileRead = true;
+		
+		if(args != null && args.length > 0){
+			inputFile = args[0];
+			if(args.length >= 2) {
+				outputFile = args[1];
+			}
+		} else {
+			try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
+				System.out.println("Input File: ");
+				String tmp = br.readLine();
+				if(tmp.equals("") || tmp.equals("0") || tmp.equals("n")) {
+					System.out.println("Ok, will use default files: " + inputFile + " " + outputFile);
+				} else {
+					inputFile = tmp;
+					System.out.println("Output File: ");
+					tmp = br.readLine();
+					if(tmp.equals("") || tmp.equals("0")) {
+						System.out.println("Ok, will use default output file: " + outputFile);
+					} else {
+						outputFile = tmp;
+					}
+				}
+				
+			} catch (Exception e) {
+				System.out.println("Couldn't read from command line!");
+				e.printStackTrace();
+			}
+			//ask for input file
+			//ask for output file
+		}				
 		
 		if(testFileRead) {
 			DecathlonMain deca = new DecathlonMain();
 			SSVParser parser = new SSVParser();
 			
 			System.out.println("========== Printing while parsing ============");
-			List<String> listOfResults = parser.parseDocument(FOLDER + "Decathlon_input.txt");
+			List<String> listOfResults = parser.parseDocument(inputFile);
 			
 			System.out.println("========== Printing from a list ========================");
 			deca.printList(listOfResults);
 			
 			System.out.println("========== Parsing from file to List<Athlete> ============");
-			List<Athlete> listOfAthletes = parser.parseDocumentToAthletes(FOLDER + "Decathlon_input.txt");
+			List<Athlete> listOfAthletes = parser.parseDocumentToAthletes(inputFile);
 			athletes.addAll(listOfAthletes);
 			
 			System.out.println("========== Advanced printing from a list ==========================");
-			List<List<String>> listOfLists = parser.parseDocumentToLists(FOLDER + "Decathlon_input.txt");
+			List<List<String>> listOfLists = parser.parseDocumentToLists(inputFile);
 			for(List<String> result : listOfLists) {
 				deca.printListNicely(result);
 			}
@@ -128,18 +159,15 @@ public class DecathlonMain {
 		System.out.println();
 		System.out.println("longJump of 60.4M: " + ff.calculatePerEvent(Constants.FIELD_LONG_JUMP, 6.9f));
 		System.out.println("javelinThrow of 690cm: " + ff.calculatePerEvent(Constants.FIELD_JAVELIN_THROW, 60.4f));
-		
-		
-		
+				
 		athletes.add(new Athlete("test1000Result", test1000Result));
 		athletes.add(new Athlete("test9990Result", test1000Result));
 		athletes.add(new Athlete("Ashton Eaton", ashtonResult));
 		athletes.add(new Athlete("Ashton Eaton2", ashtonResult));
 		PlaceFormula placement = new PlaceFormula();
 		placement.markPlaces(athletes);
-		TxtWriter writer = new TxtWriter(Constants.TEST_FOLDER);
-		writer.writeToFile("Decathlon_output.txt", athletes);
+		TxtWriter writer = new TxtWriter();
+		writer.writeToFile(outputFile, athletes);
 		
 	}
-
 }
