@@ -5,7 +5,7 @@ The task is about Decathlon competition.
 
 ## 1. TASK REQUIREMENTS:
 
-Progress: 10 / 16
+Progress: 11 / 16
 
 - [x] 1. The input of the Java program is a CSV-like text file (see the attachment).
 - [x] 2. The task is to output an XML file with all athletes in ascending order (1, 2, 3...) of their places, 
@@ -14,7 +14,7 @@ Progress: 10 / 16
 - [x] 5. The **Input** and **output** file names should be provided as parameters to the Java application at the startup.
 - [x] 6. Application should ask for those parameters itself.  
 .  
-- [ ] 7. It would be great if an XSL file for viewing the produced XML nicely using a web browser is also provided.
+- [x] 7. It would be great if an XSL file for viewing the produced XML nicely using a web browser is also provided. *Browsers failed to convert XML using my XSL, so created HTMLWriter*
 - [x] 8. Be sure to keep the code design simple, but allowing to easily change or add more **input sources** and/or **output file formats**.
 - [ ] 9. Unit tests for the code are mandatory.
 - [x] 10. No external libraries are allowed in addition to the Java standard API except JUnit.
@@ -39,3 +39,6 @@ Progress: 10 / 16
 - If you don't want to use arguments, program will ask you to enter via command line
 - The complete paths will work as well (e.g. C:/tmp/input.txt)
 - Testing file is provided: Decathlon-POJO/**test-data/Decathlon_input.txt**
+
+## Images
+![Example of HTML output](/img/2017-08-24_22_51_41-HTML-example.png)
