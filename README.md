@@ -32,10 +32,10 @@ Progress: 9 / 16
 + http://www.jetbrains.com/ - IntelliJ IDEA download
 
 ## 3. How to run this project
-+ At the moment this is Eclipse project. In order to run it, just import this as Java project into Eclipse or Spring STS.
-+ You can specify your arguments where:
-++ arg[0] - inputFile
-++ arg[1] - outputFile
-+ If you don't want to use arguments, program will ask you to enter via command line
-+ The complete paths will work as well (e.g. C:/tmp/input.txt)
-+ Testing file is provided: Decathlon-POJO/**test-data/Decathlon_input.txt**
+- At the moment this is Eclipse project. In order to run it, just import this as Java project into Eclipse or Spring STS.
+- You can specify your arguments where:
+  * arg[0] - inputFile
+  * arg[1] - outputFile
+- If you don't want to use arguments, program will ask you to enter via command line
+- The complete paths will work as well (e.g. C:/tmp/input.txt)
+- Testing file is provided: Decathlon-POJO/**test-data/Decathlon_input.txt**
