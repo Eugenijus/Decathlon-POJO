@@ -1,5 +1,6 @@
 package info.eugenijus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import info.eugenijus.model.Athlete;
@@ -8,7 +9,9 @@ import info.eugenijus.model.CustomTime;
 import info.eugenijus.model.Result;
 import info.eugenijus.strategy.FieldFormula;
 import info.eugenijus.strategy.TrackFormula;
+import info.eugenijus.utils.DocumentWriter;
 import info.eugenijus.utils.SSVParser;
+import info.eugenijus.utils.TxtWriter;
 
 /**
  * Tutorials used:
@@ -104,6 +107,7 @@ public class DecathlonMain {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		System.out.println(test1000Result.toString());
 		System.out.println("test1000Result: " + test1000Result.getTotalScore());
 		//System.out.println("new Float(5.74352f) " + new Float(5.74352f));
@@ -113,6 +117,13 @@ public class DecathlonMain {
 		System.out.println();
 		System.out.println("longJump of 60.4M: " + ff.calculatePerEvent(Constants.FIELD_LONG_JUMP, 6.9f));
 		System.out.println("javelinThrow of 690cm: " + ff.calculatePerEvent(Constants.FIELD_JAVELIN_THROW, 60.4f));
+		
+		List<Athlete> athletes = new ArrayList<>();
+		athletes.add(new Athlete("test1000Result", test1000Result));
+		athletes.add(new Athlete("Ashton Eaton", ashtonResult));
+		TxtWriter writer = new TxtWriter();
+		writer.writeToFile("Decathlon_output.txt", athletes);
+		
 	}
 
 }

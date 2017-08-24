@@ -10,6 +10,10 @@ import java.util.List;
 import info.eugenijus.model.Constants;
 
 /**
+ * Parses file with decathlon events and converts to lists or arrays to be used later<br/>
+ * By default it is assumed that separator is a comma ","!<br/>
+ * Otherwise the separator is specified in constructor by extending class
+ * <br/><br/>
  * Tutorials used:
  * https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
  * 
@@ -23,18 +27,20 @@ public class CSVParser implements DocumentParser {
 		
 	}
 
-	public CSVParser(String separator) {
+	/**
+	 * Only classes which are in same package or extend this class can choose their own separator
+	 * @param separator
+	 */
+	protected CSVParser(String separator) {
 		this.separator = separator;
 	}
 	
-	public String getSeparator() {
-		return separator;
-	}
-
-	public void setSeparator(String separator) {
-		this.separator = separator;
-	}
-
+	
+	/**
+	 * Parses file and creates list of Strings of decathlon event results (distances, times) 
+	 * where String represents all 10 results of single athelete<br/>
+	 * @return List<String> list 
+	 */
 	@Override
 	public List<String> parseDocument(String filename) {
 		List<String> list = new ArrayList<>();
@@ -54,6 +60,10 @@ public class CSVParser implements DocumentParser {
 		return list;
 	}
 
+	/**
+	 * Parses file and creates list of lists of decathlon event results (distances, times) where one single result is String<br/>
+	 * @return List<String> list 
+	 */
 	@Override
 	public List<List<String>> parseDocumentToLists(String filename) {
 		List<List<String>> listOfLists = new ArrayList<>();
@@ -75,6 +85,10 @@ public class CSVParser implements DocumentParser {
 		return listOfLists;
 	}
 	
+	/**
+	 * This method is for testing and debugging reasons
+	 * @param resultLine
+	 */
 	private void printNicelyFromArray(String[] resultLine) {
 		if (resultLine.length > 0) {
 			String athlete = (resultLine[0]);
@@ -88,5 +102,9 @@ public class CSVParser implements DocumentParser {
 			}
 			System.out.println("]");
 		}
+	}
+		
+	public String getSeparator() {
+		return separator;
 	}
 }

@@ -3,7 +3,17 @@ package info.eugenijus.model;
 public class Athlete {
 	private String name;
 	private Result result;
+	private String place;
 
+	public Athlete() {
+		
+	}
+	
+	public Athlete(String name, Result result) {
+		this.name = name;
+		this.result = result;
+	}
+	
 	public String getName() {
 		return name;
 	}

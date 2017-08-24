@@ -13,7 +13,7 @@ The task is about Decathlon competition.
 - [ ] 6. Application should ask for those parameters itself.  
 .  
 - [ ] 7. It would be great if an XSL file for viewing the produced XML nicely using a web browser is also provided.
-- [ ] 8. Be sure to keep the code design simple, but allowing to easily change or add more input sources and/or output file formats.
+- [x] 8. Be sure to keep the code design simple, but allowing to easily change or add more **input sources** and/or **output file formats**.
 - [ ] 9. Unit tests for the code are mandatory.
 - [x] 10. No external libraries are allowed in addition to the Java standard API except JUnit.
 - [ ] 11. Gradle should be used as building tool.

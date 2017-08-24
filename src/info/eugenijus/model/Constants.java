@@ -9,6 +9,7 @@ public class Constants {
 	public static final String COMMA = ",";
 	public static final String COLON = ":";
 	public static final String SEMICOLON = ";";
+	public static final String TEST_FOLDER = "test-data/";
 	
 	public static final char DOT_CHAR = '.';
 	public static final char COLON_CHAR = ':';
