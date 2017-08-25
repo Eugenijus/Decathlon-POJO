@@ -16,7 +16,7 @@ Progress: 11 / 16
 .  
 - [x] 7. It would be great if an XSL file for viewing the produced XML nicely using a web browser is also provided. *Browsers failed to convert XML using my XSL, so created HTMLWriter*
 - [x] 8. Be sure to keep the code design simple, but allowing to easily change or add more **input sources** and/or **output file formats**.
-- [ ] 9. Unit tests for the code are MANDATORY. *(5/13 test classes Done)*
+- [ ] 9. Unit tests for the code are MANDATORY. *(6/12 test classes Done)*
 - [x] 10. No external libraries are allowed in addition to the Java standard API except JUnit.
 - [ ] 11. Gradle should be used as building tool.
 - [x] 12. Recommended java version is 7, but not mandatory.

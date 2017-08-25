@@ -8,6 +8,11 @@ import org.junit.Test;
 
 import info.eugenijus.model.Constants;
 
+/**
+ * 
+ * @author Eugenijus
+ *
+ */
 public class FieldFormulaTest {
 	private FieldFormula fieldFormula;
 

@@ -7,11 +7,8 @@ import java.util.List;
 
 import info.eugenijus.model.Athlete;
 import info.eugenijus.model.Constants;
-import info.eugenijus.model.CustomTime;
 import info.eugenijus.model.Result;
-import info.eugenijus.strategy.FieldFormula;
 import info.eugenijus.strategy.PlaceFormula;
-import info.eugenijus.strategy.TrackFormula;
 import info.eugenijus.utils.HTMLWriter;
 import info.eugenijus.utils.JSONWriter;
 import info.eugenijus.utils.SSVParser;
@@ -27,33 +24,33 @@ import info.eugenijus.utils.XMLWriter;
  */
 public class DecathlonMain {
 	
-	private void printList(List<String> list) {
-		for (String str : list) {
-			System.out.println(str);
-		}
-	}	
+//	private void printList(List<String> list) {
+//		for (String str : list) {
+//			System.out.println(str);
+//		}
+//	}	
 	
-	/**
-	 * Prints athlete's name and results
-	 * @param resultsList - athlete's name and list of results of a single athlete
-	 * @return athlete - Athlete object
-	 */
-	private Athlete printListNicely(List<String> resultsList) {
-		//System.out.println("printListNicely(resultsList) where resultsList = " + resultsList.toString());
-		//optimistic approach without any checks
-		Athlete athlete = new Athlete();
-		athlete.setName(resultsList.get(0));
-		
-		Result result = new Result();
-		try{
-			result.parseAndSet(resultsList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		athlete.setResult(result);
-		System.out.println(athlete.toString());
-		return athlete;
-	}
+//	/**
+//	 * Prints athlete's name and results
+//	 * @param resultsList - athlete's name and list of results of a single athlete
+//	 * @return athlete - Athlete object
+//	 */
+//	private Athlete printListNicely(List<String> resultsList) {
+//		//System.out.println("printListNicely(resultsList) where resultsList = " + resultsList.toString());
+//		//optimistic approach without any checks
+//		Athlete athlete = new Athlete();
+//		athlete.setName(resultsList.get(0));
+//		
+//		Result result = new Result();
+//		try{
+//			result.parseAndSet(resultsList);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		athlete.setResult(result);
+//		System.out.println(athlete.toString());
+//		return athlete;
+//	}
 		
 	public static void main(String[] args) {
 		String inputFile = Constants.TEST_FOLDER + "Decathlon_input.txt";
@@ -95,24 +92,24 @@ public class DecathlonMain {
 			DecathlonMain deca = new DecathlonMain();
 			SSVParser parser = new SSVParser();
 			
-			System.out.println("========== Printing while parsing ============");
-			List<String> listOfResults = parser.parseDocument(inputFile);
-			
-			System.out.println("========== Printing from a list ========================");
-			deca.printList(listOfResults);
+//			System.out.println("========== Printing while parsing ============");
+//			List<String> listOfResults = parser.parseDocument(inputFile);
+//			
+//			System.out.println("========== Printing from a list ========================");
+//			deca.printList(listOfResults);
 			
 			System.out.println("========== Parsing from file to List<Athlete> ============");
 			List<Athlete> listOfAthletes = parser.parseDocumentToAthletes(inputFile);
 			athletes.addAll(listOfAthletes);
 			
-			System.out.println("========== Advanced printing from a list ==========================");
-			List<List<String>> listOfLists = parser.parseDocumentToLists(inputFile);
-			for(List<String> result : listOfLists) {
-				deca.printListNicely(result);
-			}
+//			System.out.println("========== Advanced printing from a list ==========================");
+//			List<List<String>> listOfLists = parser.parseDocumentToLists(inputFile);
+//			for(List<String> result : listOfLists) {
+//				deca.printListNicely(result);
+//			}
 		}
-		System.out.println("========== Testing CustomTime parsing for minutes and seconds ==========================");
-				
+		System.out.println("========== Testing Parsing and Writing ==========================");
+		/**/
 		Result test1000Result = new Result();
 		Result ashtonResult = new Result();
 		//NAME, run100M, longJump, shotPutThrow, highJump, run400M, run110MHurdles, discusThrow, poleVaultJump, javelinThrow, run1500M
@@ -129,8 +126,10 @@ public class DecathlonMain {
 		athletes.add(new Athlete("test9990Result", test1000Result));
 		athletes.add(new Athlete("Ashton Eaton", ashtonResult));
 		athletes.add(new Athlete("Ashton Eaton2", ashtonResult));
+				
 		PlaceFormula placement = new PlaceFormula();
 		placement.markPlaces(athletes);
+		
 		TxtWriter writer = new TxtWriter();
 		writer.writeToFile(outputFile, athletes);
 		JSONWriter jsonWriter = new JSONWriter();

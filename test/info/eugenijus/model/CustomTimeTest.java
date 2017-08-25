@@ -6,6 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Eugenijus
+ *
+ */
 public class CustomTimeTest {
 
 	@Before
@@ -90,8 +95,8 @@ public class CustomTimeTest {
 		
 		ct = new CustomTime("3:53.79");
 		time = (3*60)+53.79f; //233.79f
-		System.out.println("Testing: " + ct.getTimeInSeconds() + " ?= " + time);
-		assertTrue(ct.getTimeInSeconds() == time);
+		System.out.println("Testing: " + ct.getTimeInSeconds() + " ?= " + 233.79f);
+		assertTrue(ct.getTimeInSeconds() == 233.79f);
 	}
 
 	@Test

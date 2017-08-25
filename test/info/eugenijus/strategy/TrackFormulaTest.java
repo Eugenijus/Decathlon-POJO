@@ -9,6 +9,11 @@ import org.junit.Test;
 import info.eugenijus.model.Constants;
 import info.eugenijus.model.CustomTime;
 
+/**
+ * 
+ * @author Eugenijus
+ *
+ */
 public class TrackFormulaTest {
 	private TrackFormula trackFormula;
 

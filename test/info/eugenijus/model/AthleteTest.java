@@ -11,6 +11,11 @@ import org.junit.Test;
 
 import info.eugenijus.strategy.PlaceFormula;
 
+/**
+ * 
+ * @author Eugenijus
+ *
+ */
 public class AthleteTest {
 	
 	private Athlete athlete;

@@ -26,13 +26,34 @@ public class Result implements Comparable<Result>{
 	private int totalScore;
 	
 	public Result() {
-		run1500M = new CustomTime(0, 0);
-		totalScore = 0;
+		init();
 	}
 	
-	public Result(String[] resultLine) throws Exception {
-		parseAndSet(resultLine);
+	public Result(String[] resultLine){
+		try {
+			parseAndSet(resultLine);
+		} catch (Exception e) {
+			System.out.println("Couldn't parse resultLine. Setting default zero results");
+			e.printStackTrace();			
+			init();
+		}
 	}
+
+	private void init() {
+		setRun100M(0.0f);
+		setLongJump(0.0f);
+		setShotPutThrow(0.0f);
+		setHighJump(0.0f);
+		setRun400M(0.0f);
+		setRun110MHurdles(0.0f);
+		setDiscusThrow(0.0f);
+		setPoleVaultJump(0.0f);
+		setJavelinThrow(0.0f);
+		setRun1500M(new CustomTime(0, 0.0f));
+		
+		this.totalScore = 0;
+	}
+	
 	/* ================ START OF GETTERS & SETTERS ================ */
 
 	public float getRun100M() {
@@ -124,7 +145,8 @@ public class Result implements Comparable<Result>{
 	/* ================ END OF GETTERS & SETTERS ================ */
 	
 	/**
-	 * Creates array of track events (running) in float that represent seconds
+	 * Creates array of track events (running) in float that represent seconds </br>
+	 * {run100M, run400M, run110MHurdles, run1500M.getTimeInSeconds()}
 	 * @return float[] fourRunTimes 
 	 */
 	public float[] getFourTrackEvents() {
@@ -136,6 +158,7 @@ public class Result implements Comparable<Result>{
 	
 	/**
 	 * Creates array of field events (jumps and throws) in float that represent meters
+	 * {longJump, shotPutThrow, highJump, discusThrow, poleVaultJump, javelinThrow}
 	 * @return float[] sixFieldTimes 
 	 */
 	public float[] getSixFieldEvents() {

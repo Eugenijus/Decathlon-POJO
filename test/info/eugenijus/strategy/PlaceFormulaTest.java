@@ -12,6 +12,11 @@ import org.junit.Test;
 import info.eugenijus.model.Athlete;
 import info.eugenijus.model.Result;
 
+/**
+ * 
+ * @author Eugenijus
+ *
+ */
 public class PlaceFormulaTest {
 	private PlaceFormula placeFormula;
 
@@ -65,6 +70,7 @@ public class PlaceFormulaTest {
 		String place2 = athletes.get(1).getPlace();
 		String place3 = athletes.get(2).getPlace();
 		
+		assertNotEquals(place1, place2);
 		assertEquals(place2, place3);
 	}
 

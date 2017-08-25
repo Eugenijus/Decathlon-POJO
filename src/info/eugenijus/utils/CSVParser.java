@@ -78,12 +78,7 @@ public class CSVParser implements DocumentParser {
 				String[] resultLine = line.split(separator);
 				Athlete athlete = new Athlete();
 				athlete.setName(resultLine[0]);
-				try {
-					athlete.setResult(new Result(resultLine));
-				} catch (Exception e) {
-					System.out.println("Couldn't parse resultLine.");
-					e.printStackTrace();
-				}
+				athlete.setResult(new Result(resultLine));				
 				list.add(athlete);
 			}
 			System.out.println("Done parsing file: " + filename);
