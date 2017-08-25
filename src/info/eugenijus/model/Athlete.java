@@ -40,6 +40,12 @@ public class Athlete implements Comparable<Athlete>{
 		return place;
 	}
 	
+	/**
+	 * compares two athletes based on the score<br/>
+	 * If this has higher score, then 1, otherwise -1 <br/>
+	 * If both athletes have same score, then sort by name in A->Z order<br/>
+	 * If score and name equal, then returns 0.
+	 */
 	@Override
 	public int compareTo(Athlete o) {
 		int score1 = this.getResult().getTotalScore();
@@ -49,6 +55,10 @@ public class Athlete implements Comparable<Athlete>{
 		}
 		if(score1 < score2) {
 			return -1;
+		}
+		if(score1 == score2) {
+			//System.out.println(">>" + this.getName() + " place: " + this.getPlace()  + " ?= " + o.getName() + " place: " + o.getPlace());
+			return o.getName().compareTo(this.getName());
 		}
 		return 0;
 	}

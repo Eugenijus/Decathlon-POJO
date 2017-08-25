@@ -58,6 +58,10 @@ public class CustomTime {
 		}		
 	}
 	
+	/**
+	 * used StackOverflow: https://stackoverflow.com/questions/179427/how-to-resolve-a-java-rounding-double-issue
+	 * @return
+	 */
 	public float getTimeInSeconds() {
 		int minInSec = Math.multiplyExact(minutes, 60);
 		BigDecimal decimal1  = BigDecimal.valueOf(seconds);

@@ -1,7 +1,9 @@
 package info.eugenijus.strategy;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +24,9 @@ public class PlaceFormula {
 		Collections.reverse(athletes);
 		for(int i=0, j=1; i<athletes.size(); i++, j++) {
 			athletes.get(i).setPlace(Integer.toString(j));
+		}		
+		for (Athlete a : athletes) {
+			System.out.println("PlacementFormula: " + a);
 		}
 		fixSamePlaces(athletes);
 	}
@@ -30,7 +35,7 @@ public class PlaceFormula {
 		if(athletes.size() < 2) {
 			return;
 		}
-		Set<Athlete> list = new HashSet<Athlete>();
+		List<Athlete> list = new LinkedList<Athlete>();
 		int foundSame = 0;
 
 		/** 
@@ -39,34 +44,45 @@ public class PlaceFormula {
 		 * 3. if places are same, then add to the list
 		 * 4. when next pair is not equal, then process the list and empty it
 		 */
-		int place1 = 0;
-		int place2 = 0;
+		int score1 = 0;
+		int score2 = 0;
 		for(int i=0, j=1; j<athletes.size(); i++, j++) {
-			place1 = Integer.valueOf(athletes.get(i).getResult().getTotalScore());
-			place2 = Integer.valueOf(athletes.get(j).getResult().getTotalScore());
-			if(place1 == place2) {				
+			Athlete athlete1 = athletes.get(i);
+			Athlete athlete2 = athletes.get(j);
+			score1 = athlete1.getResult().getTotalScore();
+			score2 = athlete2.getResult().getTotalScore();
+			if(score1 == score2) {				
 				list.add(athletes.get(i));
 				list.add(athletes.get(j));
+				
 				foundSame++;
 				//if the end of the list
 				if(j == athletes.size()-1) {
 					markCustomPlaces(list);
-					list = new HashSet<Athlete>();
+					list = new ArrayList<Athlete>();
 					foundSame = 0;
 				}
 			} else {
 				if(foundSame > 0) {
+//					List<Athlete> sortedList = new ArrayList<Athlete>(list);
+//					Collections.sort(sortedList);
+//					markCustomPlaces(sortedList);
 					markCustomPlaces(list);
-					list = new HashSet<Athlete>();
+					list = new ArrayList<Athlete>();
 					foundSame = 0;
 				}
 			}
 		}
 	}
 	
-	private void markCustomPlaces(Set<Athlete> athletes) {
+	private void markCustomPlaces(List<Athlete> athletes) {
+		Set<Athlete> set = new LinkedHashSet<Athlete>();
+		for(Athlete athlete : athletes) {
+			set.add(athlete);
+		}
+		//Collections.sort(athletes);
 		StringBuilder builder = new StringBuilder();
-		for(Athlete a : athletes) {
+		for(Athlete a : set) {
 			builder.append(a.getPlace()).append("-");
 		}
 		String customPlace = builder.substring(0, builder.length()-1);

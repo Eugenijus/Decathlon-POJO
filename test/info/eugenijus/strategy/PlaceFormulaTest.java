@@ -54,9 +54,11 @@ public class PlaceFormulaTest {
 		}
 		
 		athletes.add(new Athlete("test9990Result", test9990Result));
-		athletes.add(new Athlete("Ashton Eaton", ashtonResult));
-		athletes.add(new Athlete("Ashton Eaton2", ashtonResult2));
+		athletes.add(new Athlete("Ashton Eaton3", ashtonResult));
+		athletes.add(new Athlete("Bashton Eaton", ashtonResult));
+		athletes.add(new Athlete("Cashton Eaton2", ashtonResult2));
 		athletes.add(new Athlete("Siim Susi", susiResults));
+		//athletes.add(new Athlete("test9990Result2", test9990Result));
 		
 		placeFormula.markPlaces(athletes);
 		
@@ -69,9 +71,18 @@ public class PlaceFormulaTest {
 		String place1 = athletes.get(0).getPlace();
 		String place2 = athletes.get(1).getPlace();
 		String place3 = athletes.get(2).getPlace();
+		String place4 = athletes.get(3).getPlace();
+		String place5 = athletes.get(4).getPlace();
 		
-		assertNotEquals(place1, place2);
+		System.out.println("places: " + place1 + ", " + place2 + ", " + place3 + ", " + place4 + ", " + place5);
+		
+		assertNotEquals(place1, place5);
+		assertEquals("1", place1);
 		assertEquals(place2, place3);
+		assertEquals("2-3-4", place2);
+		assertEquals(place3, place4);
+		assertEquals("2-3-4", place3);
+		assertEquals("5", place5);
 	}
 
 }

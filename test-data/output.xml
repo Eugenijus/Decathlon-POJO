@@ -17,42 +17,42 @@
     </results>
   </athlete>
   <athlete>
-    <place>4-2-3</place>
+    <place>2-3-4</place>
+    <name>Ashton Eaton</name>
+    <score>9045</score>
+    <results>
+      <run100M>10.23</run100M>
+      <longJump>7.88</longJump>
+      <shotPutThrow>14.52</shotPutThrow>
+      <highJump>2.01</highJump>
+      <run400M>45.0</run400M>
+      <run110MHurdles>13.69</run110MHurdles>
+      <discusThrow>43.34</discusThrow>
+      <poleVaultJump>5.2</poleVaultJump>
+      <javelinThrow>63.63</javelinThrow>
+      <run1500M>4:17.52</run1500M>
+    </results>
+  </athlete>
+  <athlete>
+    <place>2-3-4</place>
+    <name>Ashton Eaton</name>
+    <score>9045</score>
+    <results>
+      <run100M>10.23</run100M>
+      <longJump>7.88</longJump>
+      <shotPutThrow>14.52</shotPutThrow>
+      <highJump>2.01</highJump>
+      <run400M>45.0</run400M>
+      <run110MHurdles>13.69</run110MHurdles>
+      <discusThrow>43.34</discusThrow>
+      <poleVaultJump>5.2</poleVaultJump>
+      <javelinThrow>63.63</javelinThrow>
+      <run1500M>4:17.52</run1500M>
+    </results>
+  </athlete>
+  <athlete>
+    <place>2-3-4</place>
     <name>Ashton Eaton2</name>
-    <score>9045</score>
-    <results>
-      <run100M>10.23</run100M>
-      <longJump>7.88</longJump>
-      <shotPutThrow>14.52</shotPutThrow>
-      <highJump>2.01</highJump>
-      <run400M>45.0</run400M>
-      <run110MHurdles>13.69</run110MHurdles>
-      <discusThrow>43.34</discusThrow>
-      <poleVaultJump>5.2</poleVaultJump>
-      <javelinThrow>63.63</javelinThrow>
-      <run1500M>4:17.52</run1500M>
-    </results>
-  </athlete>
-  <athlete>
-    <place>4-2-3</place>
-    <name>Ashton Eaton</name>
-    <score>9045</score>
-    <results>
-      <run100M>10.23</run100M>
-      <longJump>7.88</longJump>
-      <shotPutThrow>14.52</shotPutThrow>
-      <highJump>2.01</highJump>
-      <run400M>45.0</run400M>
-      <run110MHurdles>13.69</run110MHurdles>
-      <discusThrow>43.34</discusThrow>
-      <poleVaultJump>5.2</poleVaultJump>
-      <javelinThrow>63.63</javelinThrow>
-      <run1500M>4:17.52</run1500M>
-    </results>
-  </athlete>
-  <athlete>
-    <place>4-2-3</place>
-    <name>Ashton Eaton</name>
     <score>9045</score>
     <results>
       <run100M>10.23</run100M>

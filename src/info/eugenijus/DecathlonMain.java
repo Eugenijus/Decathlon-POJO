@@ -89,7 +89,6 @@ public class DecathlonMain {
 		}				
 		
 		if(testFileRead) {
-			DecathlonMain deca = new DecathlonMain();
 			SSVParser parser = new SSVParser();
 			
 //			System.out.println("========== Printing while parsing ============");
