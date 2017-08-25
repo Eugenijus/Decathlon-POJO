@@ -13,10 +13,10 @@ import info.eugenijus.model.Athlete;
  * @author Eugenijus Sabaliauskas
  */
 public class TxtWriter implements DocumentWriter {
-	public String folder;
+	private String folder;
 	
 	public TxtWriter() {
-		folder = "";
+		this.folder = "";
 	}
 	
 	/**
@@ -29,11 +29,11 @@ public class TxtWriter implements DocumentWriter {
 	}
 
 	@Override
-	public boolean writeToFile(String filename,  List<Athlete> results) {
+	public boolean writeToFile(String filename,  List<Athlete> athletesList) {
 		boolean isSuccess = false;
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(folder + filename))) {
 			StringBuilder builder = new StringBuilder();
-			for(Athlete athlete : results) {
+			for(Athlete athlete : athletesList) {
 				builder.append(athlete.toString()).append('\r').append('\n');
 			}
 			bw.write(builder.toString());
@@ -45,5 +45,9 @@ public class TxtWriter implements DocumentWriter {
 			e.printStackTrace();
 		}
 		return isSuccess;
+	}
+	
+	public String getFolder(){
+		return folder;
 	}
 }

@@ -34,17 +34,17 @@ public class JSONWriter implements DocumentWriter {
 	 * @param folder
 	 */
 	@Override
-	public boolean writeToFile(String filename,  List<Athlete> results) {
+	public boolean writeToFile(String filename,  List<Athlete> athletesList) {
 		boolean isSuccess = false;
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(folder + filename))) {
 			StringBuilder builder = new StringBuilder();
 			builder.append("{\"athletes\":{");
-			for(int i=0; i<results.size()-1; i++){
+			for(int i=0; i<athletesList.size()-1; i++){
 				builder.append("\"a\":");
-				builder.append(results.get(i).toString()).append(",").append('\r').append('\n');
+				builder.append(athletesList.get(i).toString()).append(",").append('\r').append('\n');
 			}
 			builder.append("\"a\":");
-			builder.append(results.get(results.size()-1).toString()).append('\r').append('\n');
+			builder.append(athletesList.get(athletesList.size()-1).toString()).append('\r').append('\n');
 			builder.append("} }");
 			bw.write(builder.toString());
 			System.out.println("Done writing to: " + filename);

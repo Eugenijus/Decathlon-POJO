@@ -53,9 +53,9 @@ public class XMLWriter implements DocumentWriter {
 	 * https://www.w3schools.com/xml/xml_validator.asp
 	 */
 	@Override
-	public boolean writeToFile(String filename, List<Athlete> athleteList) {
+	public boolean writeToFile(String filename, List<Athlete> athletesList) {
 		boolean isSuccess = false;		
-		if(athleteList.size() < 1) {
+		if(athletesList.size() < 1) {
 			return false;
 		}
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(folder + filename))) {
@@ -76,7 +76,7 @@ public class XMLWriter implements DocumentWriter {
 				}
 				
 				/* now lets iterate through athletes and their results */
-				for(Athlete athlete : athleteList) {
+				for(Athlete athlete : athletesList) {
 					// single athlete
 					Element athleteElement = doc.createElement("athlete");
 					rootElement.appendChild(athleteElement);
