@@ -23,10 +23,13 @@ import info.eugenijus.model.Result;
  */
 public class CSVParser implements DocumentParser {
 	
-	private String separator = Constants.COMMA;
+	private String separator;
 	
+	/**
+	 * default separator is COMMA ","
+	 */
 	public CSVParser() {
-		
+		separator = Constants.COMMA;
 	}
 
 	/**
@@ -68,6 +71,7 @@ public class CSVParser implements DocumentParser {
 	 * Parses file and creates list of Athlete objects<br/>
 	 * @return List<String> list 
 	 */
+	@Override
 	public List<Athlete> parseDocumentToAthletes(String filename) {
 		List<Athlete> list = new ArrayList<>();
 		String line = "";
@@ -95,6 +99,7 @@ public class CSVParser implements DocumentParser {
 	 * @return List<String> list 
 	 */
 	@Override
+	@Deprecated
 	public List<List<String>> parseDocumentToLists(String filename) {
 		List<List<String>> listOfLists = new ArrayList<>();
 		List<String> list;

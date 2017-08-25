@@ -66,20 +66,19 @@ public class DecathlonMain {
 		} else {
 			try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
 				System.out.println("Input File: ");
-				String tmp = br.readLine();
-				if(tmp.equals("") || tmp.equals("0") || tmp.equals("n")) {
+				String inputLine = br.readLine();
+				if(inputLine.equals("") || inputLine.equals("0") || inputLine.equals("n")) {
 					System.out.println("Ok, will use default files: " + inputFile + " " + outputFile);
 				} else {
-					inputFile = tmp;
+					inputFile = inputLine;
 					System.out.println("Output File: ");
-					tmp = br.readLine();
-					if(tmp.equals("") || tmp.equals("0")) {
+					inputLine = br.readLine();
+					if(inputLine.equals("") || inputLine.equals("0")) {
 						System.out.println("Ok, will use default output file: " + outputFile);
 					} else {
-						outputFile = tmp;
+						outputFile = inputLine;
 					}
 				}
-				
 			} catch (Exception e) {
 				System.out.println("Couldn't read from command line!");
 				e.printStackTrace();
