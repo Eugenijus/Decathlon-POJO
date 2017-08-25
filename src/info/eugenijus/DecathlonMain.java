@@ -160,8 +160,8 @@ public class DecathlonMain {
 		System.out.println(ashtonResult.toString());
 		System.out.println("ashtonResult: " + ashtonResult.getTotalScore());
 		System.out.println();
-		System.out.println("longJump of 60.4M: " + ff.calculatePerEvent(Constants.FIELD_LONG_JUMP, 6.9f));
-		System.out.println("javelinThrow of 690cm: " + ff.calculatePerEvent(Constants.FIELD_JAVELIN_THROW, 60.4f));
+		System.out.println("longJump of 60.4M: " + ff.calculateScorePerEvent(Constants.FIELD_LONG_JUMP, 6.9f));
+		System.out.println("javelinThrow of 690cm: " + ff.calculateScorePerEvent(Constants.FIELD_JAVELIN_THROW, 60.4f));
 				
 		//athletes.add(new Athlete("test1000Result", test1000Result));
 		athletes.add(new Athlete("test9990Result", test1000Result));

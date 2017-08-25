@@ -36,16 +36,16 @@ public class Constants {
 	 */
 	private static Map<String, Float> createPointsTableColumnA() {
 		Map<String, Float> result = new HashMap<String, Float>();
-		result.put("100m",	  new Float(25.4347f));
-		result.put("110m",    new Float(5.74352f));
-		result.put("400m",    new Float(1.53775f));
-		result.put("1500m",   new Float(0.03768f));
-		result.put("Discus",  new Float(12.91f));
-		result.put("Javelin", new Float(10.14f));
-		result.put("Shot",    new Float(51.39f));
-		result.put("Long",    new Float(0.14354f));
-		result.put("High",    new Float(0.8465f));
-		result.put("Pole",    new Float(0.2797f));
+		result.put(TRACK_100M,	  		new Float(25.4347f));
+		result.put(TRACK_110M,    		new Float(5.74352f));
+		result.put(TRACK_400M,    		new Float(1.53775f));
+		result.put(TRACK_1500M,   		new Float(0.03768f));
+		result.put(FIELD_DISCUS_THROW,  new Float(12.91f));
+		result.put(FIELD_JAVELIN_THROW, new Float(10.14f));
+		result.put(FIELD_SHOT_THROW,    new Float(51.39f));
+		result.put(FIELD_LONG_JUMP,     new Float(0.14354f));
+		result.put(FIELD_HIGH_JUMP,     new Float(0.8465f));
+		result.put(FIELD_POLE_JUMP,     new Float(0.2797f));
         return Collections.unmodifiableMap(result);
     }
 	
@@ -54,16 +54,16 @@ public class Constants {
 	 */
 	private static Map<String, Float> createPointsTableColumnB() {
 		Map<String, Float> result = new HashMap<String, Float>();
-		result.put("100m",	  new Float(18f));
-		result.put("110m",    new Float(28.5f));
-		result.put("400m",    new Float(82f));
-		result.put("1500m",   new Float(480f));
-		result.put("Discus",  new Float(4f));
-		result.put("Javelin", new Float(7f));
-		result.put("Shot",    new Float(1.5f));
-		result.put("Long",    new Float(220f));
-		result.put("High",    new Float(75f));
-		result.put("Pole",    new Float(100f));
+		result.put(TRACK_100M,	  		new Float(18f));
+		result.put(TRACK_110M,    		new Float(28.5f));
+		result.put(TRACK_400M,    		new Float(82f));
+		result.put(TRACK_1500M,   		new Float(480f));
+		result.put(FIELD_DISCUS_THROW,  new Float(4f));
+		result.put(FIELD_JAVELIN_THROW, new Float(7f));
+		result.put(FIELD_SHOT_THROW,    new Float(1.5f));
+		result.put(FIELD_LONG_JUMP,     new Float(220f));
+		result.put(FIELD_HIGH_JUMP,     new Float(75f));
+		result.put(FIELD_POLE_JUMP,     new Float(100f));
 
         return Collections.unmodifiableMap(result);
 	}
@@ -73,16 +73,16 @@ public class Constants {
 	 */
 	private static Map<String, Float> createPointsTableColumnC() {
 		Map<String, Float> result = new HashMap<String, Float>();
-		result.put("100m",	  new Float(1.81f));
-		result.put("110m",    new Float(1.92f));
-		result.put("400m",    new Float(1.81f));
-		result.put("1500m",   new Float(1.85f));
-		result.put("Discus",  new Float(1.1f));
-		result.put("Javelin", new Float(1.08f));
-		result.put("Shot",    new Float(1.05f));
-		result.put("Long",    new Float(1.4f ));
-		result.put("High",    new Float(1.42f));
-		result.put("Pole",    new Float(1.35f));
+		result.put(TRACK_100M,	  new Float(1.81f));
+		result.put(TRACK_110M,    new Float(1.92f));
+		result.put(TRACK_400M,    new Float(1.81f));
+		result.put(TRACK_1500M,   new Float(1.85f));
+		result.put(FIELD_DISCUS_THROW,  new Float(1.1f));
+		result.put(FIELD_JAVELIN_THROW, new Float(1.08f));
+		result.put(FIELD_SHOT_THROW,    new Float(1.05f));
+		result.put(FIELD_LONG_JUMP,    new Float(1.4f ));
+		result.put(FIELD_HIGH_JUMP,    new Float(1.42f));
+		result.put(FIELD_POLE_JUMP,    new Float(1.35f));
         return Collections.unmodifiableMap(result);
 	}
 }

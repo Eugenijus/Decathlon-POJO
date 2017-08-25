@@ -16,7 +16,7 @@ Progress: 11 / 16
 .  
 - [x] 7. It would be great if an XSL file for viewing the produced XML nicely using a web browser is also provided. *Browsers failed to convert XML using my XSL, so created HTMLWriter*
 - [x] 8. Be sure to keep the code design simple, but allowing to easily change or add more **input sources** and/or **output file formats**.
-- [ ] 9. Unit tests for the code are mandatory.
+- [ ] 9. Unit tests for the code are MANDATORY. *(5/13 test classes Done)*
 - [x] 10. No external libraries are allowed in addition to the Java standard API except JUnit.
 - [ ] 11. Gradle should be used as building tool.
 - [x] 12. Recommended java version is 7, but not mandatory.
@@ -24,7 +24,7 @@ Progress: 11 / 16
   .  
 - [ ] 14. It is preferred that IntelliJ is used as IDEA.
 - [ ] 15. Try to keep your code as readable as possible. We value code simplicity.
-- [x] 16. Use object-oriented approach with design patterns where applicable. (Strategy, ...)
+- [x] 16. Use object-oriented approach with design patterns where applicable. *(Strategy, ...)*
 
 ## 2. Resource links:
 + http://en.wikipedia.org/wiki/Decathlon (see formulas are at the end of the page)

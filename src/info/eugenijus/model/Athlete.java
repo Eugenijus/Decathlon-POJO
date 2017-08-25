@@ -6,11 +6,12 @@ public class Athlete implements Comparable<Athlete>{
 	private String place;
 
 	public Athlete() {
-		this.place = "N/A";		
+		this.name = "N/A";
+		this.place = "DNF";	
 	}
 	
 	public Athlete(String name, Result result) {
-		this.place = "N/A";
+		this.place = "DNF";
 		this.name = name;
 		this.result = result;
 	}
@@ -57,7 +58,11 @@ public class Athlete implements Comparable<Athlete>{
 		StringBuilder builder = new StringBuilder();
 		builder.append("{\"name\": ").append("\"").append(getName()).append("\", ");
 		builder.append("\"place\": ").append("\"").append(getPlace()).append("\", ");
-		builder.append(result.toString());
+		if(result == null) {
+			builder.append("null");
+		} else {
+			builder.append(result.toString());
+		}		
 		builder.append("}");		
 		return builder.toString();
 	}

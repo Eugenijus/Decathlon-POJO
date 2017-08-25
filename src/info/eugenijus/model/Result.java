@@ -26,7 +26,8 @@ public class Result implements Comparable<Result>{
 	private int totalScore;
 	
 	public Result() {
-		//regular constructor
+		run1500M = new CustomTime(0, 0);
+		totalScore = 0;
 	}
 	
 	public Result(String[] resultLine) throws Exception {
@@ -110,6 +111,7 @@ public class Result implements Comparable<Result>{
 		return run1500M;
 	}
 
+	//Overload
 	public void setRun1500M(String run1500m) {
 		CustomTime time = new CustomTime(run1500m);
 		run1500M = time;
@@ -126,6 +128,8 @@ public class Result implements Comparable<Result>{
 	 * @return float[] fourRunTimes 
 	 */
 	public float[] getFourTrackEvents() {
+		if(run1500M == null)
+			run1500M = new CustomTime();
 		float[] fourRunTimes = {run100M, run400M, run110MHurdles, run1500M.getTimeInSeconds()};
 		return fourRunTimes ;
 	}
@@ -177,6 +181,7 @@ public class Result implements Comparable<Result>{
 		}
 		CustomTime ct = new CustomTime(run1500M);
 		setRun1500M(ct);
+		calculateTotalScore();
 	}
 
 	private float parseStrToFloat(String[] strArr, int index) {
@@ -191,7 +196,7 @@ public class Result implements Comparable<Result>{
 		try {
 			f = Float.parseFloat(strTime);
 		} catch (NumberFormatException ne) {
-			System.out.println("Setting [" + strTime + "] to 0.0");
+			System.out.println("NumberFormatException; Setting [" + strTime + "] to 0.0");
 		}
 		return f;
 	}
@@ -211,6 +216,7 @@ public class Result implements Comparable<Result>{
 		FieldFormula fieldFormula = new FieldFormula();
 		score += trackFormula.calculateScore(getFourTrackEvents());
 		score += fieldFormula.calculateScore(getSixFieldEvents());
+		this.totalScore = score;
 		return score;
 	}
 

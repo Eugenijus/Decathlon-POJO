@@ -1,10 +1,29 @@
 package info.eugenijus.model;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 public class CustomTime {
 	private int minutes;
 	private float seconds;
-	
 	private boolean isPrintingRequired = false;
+	
+	/**
+	 * Default constructor, so minutes will be 0 and seconds 0.0
+	 */
+	public CustomTime() {
+		this(0, 0.0f);
+	}
+	
+	/**
+	 * Sets minutes as int and seconds as float
+	 * @param minutes
+	 * @param seconds
+	 */
+	public CustomTime(int minutes, float seconds) {
+		this.minutes = minutes;
+		this.seconds = seconds;
+	}	
 	
 	public CustomTime(String run1500m) {
 		if(run1500m !=null && !run1500m.isEmpty()) {
@@ -39,17 +58,14 @@ public class CustomTime {
 		}		
 	}
 	
-	public CustomTime() {
-		this(0, 0.0f);
-	}
-	
-	public CustomTime(int minutes, float seconds) {
-		this.minutes = minutes;
-		this.seconds = seconds;
-	}	
-	
 	public float getTimeInSeconds() {
-		return (minutes*60)+seconds;
+		int minInSec = Math.multiplyExact(minutes, 60);
+		BigDecimal decimal1  = BigDecimal.valueOf(seconds);
+		decimal1 = decimal1.add(new BigDecimal(minInSec));
+		//System.out.println("getTimeInSeconds() floatValue: " + decimal1.floatValue());
+		//System.out.println("getTimeInSeconds() decimal1.round(MathContext.DECIMAL32): " + decimal1.round(MathContext.DECIMAL32));
+		float result = decimal1.round(MathContext.DECIMAL32).floatValue();
+		return result;
 	}
 	
 	@Override

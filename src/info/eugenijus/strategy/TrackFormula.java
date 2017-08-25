@@ -14,17 +14,29 @@ import info.eugenijus.model.Constants;
  *
  */
 public class TrackFormula implements ScoringStrategy {
-
+	private boolean printParsedData = false;
+	
+	public TrackFormula() { }
+	public TrackFormula(boolean printing) {
+		this.printParsedData = printing;
+	}
+	
+	/**
+	 * This method should go through even results 
+	 * and calculates score for each event and then adds them all 
+	 * @param eventResults - MUST HAVE 4 float numbers! {run100M, run400M, run110MHurdles, run1500M.getTimeInSeconds()}
+	 * @return totalScore
+	 */
 	@Override
 	public int calculateScore(float[] eventResults) {
 		int score = 0;
 		if(eventResults.length > 0 && eventResults.length < 5) {
 			try {
 				//float[] fourRunTimes = {run100M, run400M, run110MHurdles, run1500M.getTimeInSeconds()};
-				score += calculatePerEvent(Constants.TRACK_100M, eventResults[0]);
-				score += calculatePerEvent(Constants.TRACK_400M, eventResults[1]);
-				score += calculatePerEvent(Constants.TRACK_110M, eventResults[2]);
-				score += calculatePerEvent(Constants.TRACK_1500M, eventResults[3]);
+				score += calculateScorePerEvent(Constants.TRACK_100M, eventResults[0]);
+				score += calculateScorePerEvent(Constants.TRACK_400M, eventResults[1]);
+				score += calculateScorePerEvent(Constants.TRACK_110M, eventResults[2]);
+				score += calculateScorePerEvent(Constants.TRACK_1500M, eventResults[3]);
 			} catch(Exception e) {
 				System.out.println("Oops, not enough data in TrackFormula#calculateScore() with eventResults.length=" 
 						+ eventResults.length + " eventResults:" + Arrays.toString(eventResults));
@@ -41,11 +53,13 @@ public class TrackFormula implements ScoringStrategy {
 	 * @return score = Math.floor(A(B - time)^C)
 	 */
 	@Override
-	public int calculatePerEvent(String eventName, float time) {
+	public int calculateScorePerEvent(String eventName, float time) {
 		int score = 0;
-		score = (int)Math.floor(Constants.COLUMN_A.get(eventName) *  Math.pow((Constants.COLUMN_B.get(eventName)-time), 
+		if(time != 0) {
+			score = (int)Math.floor(Constants.COLUMN_A.get(eventName) *  Math.pow((Constants.COLUMN_B.get(eventName)-time), 
 				Constants.COLUMN_C.get(eventName)) );
-		if(true) {
+		}
+		if(printParsedData) {
 			System.out.println("eventName: " + eventName + " time:  " + time + " score: " + score);
 		}
 		return score;

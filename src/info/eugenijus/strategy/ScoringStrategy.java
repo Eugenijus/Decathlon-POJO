@@ -14,5 +14,5 @@ public interface ScoringStrategy {
 	 */
 	public int calculateScore(float[] eventResults);
 	
-	public int calculatePerEvent(String eventName, float result);
+	public int calculateScorePerEvent(String eventName, float result);
 }

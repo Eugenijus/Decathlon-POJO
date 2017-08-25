@@ -14,6 +14,10 @@ public class PlaceFormula {
 	 * @param athletes
 	 */
 	public void markPlaces(List<Athlete> athletes) {
+		if(athletes.size() == 1) {
+			athletes.get(0).setPlace("1");
+			return;
+		}
 		Collections.sort(athletes);
 		Collections.reverse(athletes);
 		for(int i=0, j=1; i<athletes.size(); i++, j++) {
@@ -44,6 +48,12 @@ public class PlaceFormula {
 				list.add(athletes.get(i));
 				list.add(athletes.get(j));
 				foundSame++;
+				//if the end of the list
+				if(j == athletes.size()-1) {
+					markCustomPlaces(list);
+					list = new HashSet<Athlete>();
+					foundSame = 0;
+				}
 			} else {
 				if(foundSame > 0) {
 					markCustomPlaces(list);
