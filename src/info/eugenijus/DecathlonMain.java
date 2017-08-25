@@ -112,35 +112,7 @@ public class DecathlonMain {
 			}
 		}
 		System.out.println("========== Testing CustomTime parsing for minutes and seconds ==========================");
-		CustomTime ct1 = new CustomTime("5.25.72");
-		System.out.println(ct1.toString());
-		CustomTime ct2 = new CustomTime("5.25");
-		System.out.println(ct2.toString());
-		CustomTime ct3 = new CustomTime("4.00.");
-		System.out.println(ct3.toString());
-		
-		CustomTime ct4 = new CustomTime("2.10.123");
-		System.out.println(ct4.getTimeInSeconds());
-		CustomTime ct5 = new CustomTime("3:53.79");
-		System.out.println(ct5.getTimeInSeconds());
-		
-		//233 = 3:53.79
-		float time = (3*60)+53.79f;
-		System.out.println("time: " + time);
-		int result1000 = (int)Math.floor(0.03768f *  Math.pow((480-time), 1.85) );
-		System.out.println("Should be 1000: " + result1000);
-		
-		TrackFormula tf = new TrackFormula();
-		float[] eventResults = {11.756f, 52.58f, 16.29f, (4*60)+36.96f};
-		//each event should have score of 700 and total of 2800
-		System.out.println(tf.calculateScore(eventResults));
-		
-		FieldFormula ff = new FieldFormula();
-		//float[] sixFieldTimes = {longJump, shotPutThrow, highJump, discusThrow, poleVaultJump, javelinThrow};
-		float[] eventResults2 = {6.94f, 15.16f, 1.99f, 46.59f, 4.63f, 64.09f};
-		//each event should have score of 800 and total of 4800
-		System.out.println(ff.calculateScore(eventResults2));
-		
+				
 		Result test1000Result = new Result();
 		Result ashtonResult = new Result();
 		//NAME, run100M, longJump, shotPutThrow, highJump, run400M, run110MHurdles, discusThrow, poleVaultJump, javelinThrow, run1500M
@@ -153,16 +125,6 @@ public class DecathlonMain {
 			e.printStackTrace();
 		}
 		
-		System.out.println(test1000Result.toString());
-		System.out.println("test1000Result: " + test1000Result.getTotalScore());
-		//System.out.println("new Float(5.74352f) " + new Float(5.74352f));
-		System.out.println();
-		System.out.println(ashtonResult.toString());
-		System.out.println("ashtonResult: " + ashtonResult.getTotalScore());
-		System.out.println();
-		System.out.println("longJump of 60.4M: " + ff.calculateScorePerEvent(Constants.FIELD_LONG_JUMP, 6.9f));
-		System.out.println("javelinThrow of 690cm: " + ff.calculateScorePerEvent(Constants.FIELD_JAVELIN_THROW, 60.4f));
-				
 		//athletes.add(new Athlete("test1000Result", test1000Result));
 		athletes.add(new Athlete("test9990Result", test1000Result));
 		athletes.add(new Athlete("Ashton Eaton", ashtonResult));

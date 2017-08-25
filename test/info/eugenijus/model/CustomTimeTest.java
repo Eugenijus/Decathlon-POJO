@@ -82,6 +82,16 @@ public class CustomTimeTest {
 		time = (3*60)+53.79f; //233.79f
 		System.out.println("Testing: " + ct.getTimeInSeconds());
 		assertTrue(ct.getTimeInSeconds() == 233.79f);
+		
+		ct = new CustomTime("2.10.123");
+		time = (2*60)+10.123f; //233.79f
+		System.out.println("Testing: " + ct.getTimeInSeconds() + " ?= " + time);
+		assertTrue(ct.getTimeInSeconds() == time);
+		
+		ct = new CustomTime("3:53.79");
+		time = (3*60)+53.79f; //233.79f
+		System.out.println("Testing: " + ct.getTimeInSeconds() + " ?= " + time);
+		assertTrue(ct.getTimeInSeconds() == time);
 	}
 
 	@Test
