@@ -5,7 +5,7 @@ The task is about Decathlon competition.
 
 ## 1. TASK REQUIREMENTS:
 
-Progress: 11 / 16
+Progress: 13 / 16
 
 - [x] 1. The input of the Java program is a CSV-like text file (see the attachment).
 - [x] 2. The task is to output an XML file with all athletes in ascending order (1, 2, 3...) of their places, 
@@ -16,14 +16,14 @@ Progress: 11 / 16
 .  
 - [x] 7. It would be great if an XSL file for viewing the produced XML nicely using a web browser is also provided. *Browsers failed to convert XML using my XSL, so created HTMLWriter*
 - [x] 8. Be sure to keep the code design simple, but allowing to easily change or add more **input sources** and/or **output file formats**.
-- [ ] 9. Unit tests for the code are MANDATORY. *(11/12 test classes Done)*
+- [x] 9. Unit tests for the code are MANDATORY. *(12/12 Test Case classes Done)*
 - [x] 10. No external libraries are allowed in addition to the Java standard API except JUnit.
 - [ ] 11. Gradle should be used as building tool.
 - [x] 12. Recommended java version is 7, but not mandatory.
 - [ ] 13. Please zip your code together with the project file. Keep in mind that we are going to run both your program and the tests.  
   .  
 - [ ] 14. It is preferred that IntelliJ is used as IDEA.
-- [ ] 15. Try to keep your code as readable as possible. We value code simplicity.
+- [x] 15. Try to keep your code as readable as possible. We value code simplicity.
 - [x] 16. Use object-oriented approach with design patterns where applicable. *(Strategy, ...)*
 
 ## 2. Resource links:

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="style/style.xsl"?><athletes>
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="test-data/style/style.xsl"?><athletes>
   <athlete>
     <place>1</place>
-    <name>test9990Result</name>
+    <name>Athlete9990</name>
     <score>9990</score>
     <results>
       <run100M>10.395</run100M>
@@ -17,7 +17,7 @@
     </results>
   </athlete>
   <athlete>
-    <place>2-3-4</place>
+    <place>2-3</place>
     <name>Ashton Eaton</name>
     <score>9045</score>
     <results>
@@ -34,8 +34,8 @@
     </results>
   </athlete>
   <athlete>
-    <place>2-3-4</place>
-    <name>Ashton Eaton</name>
+    <place>2-3</place>
+    <name>Bashton Eaton</name>
     <score>9045</score>
     <results>
       <run100M>10.23</run100M>
@@ -51,24 +51,7 @@
     </results>
   </athlete>
   <athlete>
-    <place>2-3-4</place>
-    <name>Ashton Eaton2</name>
-    <score>9045</score>
-    <results>
-      <run100M>10.23</run100M>
-      <longJump>7.88</longJump>
-      <shotPutThrow>14.52</shotPutThrow>
-      <highJump>2.01</highJump>
-      <run400M>45.0</run400M>
-      <run110MHurdles>13.69</run110MHurdles>
-      <discusThrow>43.34</discusThrow>
-      <poleVaultJump>5.2</poleVaultJump>
-      <javelinThrow>63.63</javelinThrow>
-      <run1500M>4:17.52</run1500M>
-    </results>
-  </athlete>
-  <athlete>
-    <place>5</place>
+    <place>4</place>
     <name>Siim Susi</name>
     <score>4200</score>
     <results>
@@ -85,7 +68,7 @@
     </results>
   </athlete>
   <athlete>
-    <place>6</place>
+    <place>5</place>
     <name>Jaana Lind</name>
     <score>3494</score>
     <results>
@@ -102,7 +85,7 @@
     </results>
   </athlete>
   <athlete>
-    <place>7</place>
+    <place>6</place>
     <name>Beata Kana</name>
     <score>3199</score>
     <results>
@@ -119,7 +102,7 @@
     </results>
   </athlete>
   <athlete>
-    <place>8</place>
+    <place>7</place>
     <name>Anti Loop</name>
     <score>3099</score>
     <results>

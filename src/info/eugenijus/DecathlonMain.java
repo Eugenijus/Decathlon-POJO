@@ -24,39 +24,10 @@ import info.eugenijus.utils.XMLWriter;
  */
 public class DecathlonMain {
 	
-//	private void printList(List<String> list) {
-//		for (String str : list) {
-//			System.out.println(str);
-//		}
-//	}	
-	
-//	/**
-//	 * Prints athlete's name and results
-//	 * @param resultsList - athlete's name and list of results of a single athlete
-//	 * @return athlete - Athlete object
-//	 */
-//	private Athlete printListNicely(List<String> resultsList) {
-//		//System.out.println("printListNicely(resultsList) where resultsList = " + resultsList.toString());
-//		//optimistic approach without any checks
-//		Athlete athlete = new Athlete();
-//		athlete.setName(resultsList.get(0));
-//		
-//		Result result = new Result();
-//		try{
-//			result.parseAndSet(resultsList);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		athlete.setResult(result);
-//		System.out.println(athlete.toString());
-//		return athlete;
-//	}
-		
 	public static void main(String[] args) {
 		String inputFile = Constants.TEST_FOLDER + "Decathlon_input.txt";
 		String outputFile = Constants.TEST_FOLDER  + "Decathlon_output.txt";
 		List<Athlete> athletes = new LinkedList<>();
-		boolean testFileRead = true;
 		
 		if(args != null && args.length > 0){
 			inputFile = args[0];
@@ -65,12 +36,14 @@ public class DecathlonMain {
 			}
 		} else {
 			try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
+				//asking for input file
 				System.out.println("Input File: ");
 				String inputLine = br.readLine();
 				if(inputLine.equals("") || inputLine.equals("0") || inputLine.equals("n")) {
 					System.out.println("Ok, will use default files: \n" + inputFile + "\n" + outputFile);
 				} else {
 					inputFile = inputLine;
+					//asking for output file
 					System.out.println("Output File: ");
 					inputLine = br.readLine();
 					if(inputLine.equals("") || inputLine.equals("0")) {
@@ -82,71 +55,36 @@ public class DecathlonMain {
 			} catch (Exception e) {
 				System.out.println("Couldn't read from command line!");
 				e.printStackTrace();
-			}
-			//ask for input file
-			//ask for output file
+			}			
 		}				
 		
-		if(testFileRead) {
-			SSVParser parser = new SSVParser();
-			
-//			System.out.println("========== Printing while parsing ============");
-//			List<String> listOfResults = parser.parseDocument(inputFile);
-//			
-//			System.out.println("========== Printing from a list ========================");
-//			deca.printList(listOfResults);
-			
-			System.out.println("========== Parsing from file to List<Athlete> ============");
-			List<Athlete> listOfAthletes = parser.parseDocumentToAthletes(inputFile);
-			athletes.addAll(listOfAthletes);
-			
-//			System.out.println("========== Advanced printing from a list ==========================");
-//			List<List<String>> listOfLists = parser.parseDocumentToLists(inputFile);
-//			for(List<String> result : listOfLists) {
-//				deca.printListNicely(result);
-//			}
-		}
-		System.out.println("========== Testing Parsing ==========================");
-		/**/
-		Result test1000Result = new Result();
-		Result ashtonResult = new Result();
-		//NAME, run100M, longJump, shotPutThrow, highJump, run400M, run110MHurdles, discusThrow, poleVaultJump, javelinThrow, run1500M
-		String[] resultsArr = {"Athlete1000", "10.395", "7.76", "18.4", "2.20", "46.17", "13.8", "56.17", "5.28", "77.19", "3:53.79"};
-		String[] ashton = {"Ashton Eaton", "10.23", "7.88", "14.52", "2.01", "45.0", "13.69", "43.34", "5.2", "63.63", "4:17.52"};
-		try {
-			test1000Result.parseAndSet(resultsArr);
-			ashtonResult.parseAndSet(ashton);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		//athletes.add(new Athlete("test1000Result", test1000Result));
-		athletes.add(new Athlete("test9990Result", test1000Result));
-		athletes.add(new Athlete("Ashton Eaton", ashtonResult));
-		athletes.add(new Athlete("Ashton Eaton2", ashtonResult));
-		
-		System.out.println("========== Testing Scoring ==========================");
+		//System.out.println("========== Parsing from file to List<Athlete> ============");
+		SSVParser parser = new SSVParser();		
+		List<Athlete> listOfAthletes = parser.parseDocumentToAthletes(inputFile);
+		athletes.addAll(listOfAthletes);
+				
+		//System.out.println("========== Scoring ==========================");
 		
 		PlaceFormula placement = new PlaceFormula();
 		placement.markPlaces(athletes);
 		
-		System.out.println("========== Testing Writing ==========================");
+		//System.out.println("========== Writing ==========================");
 		TxtWriter writer = new TxtWriter();
 		writer.writeToFile(outputFile, athletes);
 		
-		JSONWriter jsonWriter = new JSONWriter();
-		jsonWriter.writeToFile(Constants.TEST_FOLDER + "output.json", athletes);
+//		JSONWriter jsonWriter = new JSONWriter();
+//		jsonWriter.writeToFile(Constants.TEST_FOLDER + "output.json", athletes);
 		
-		String xmlFilename = "output.xml";
-		String xslFilename = Constants.STYLE_FOLDER + Constants.XSL_STYLESHEET;
-		String htmlFilename = "output.html";
+		String xmlFilename = outputFile + "_ouput.xml";
+		String xslFilename = Constants.TEST_FOLDER + Constants.STYLE_FOLDER + Constants.XSL_STYLESHEET;
+		String htmlFilename = outputFile + "_output.html";
 		//tested with https://www.w3schools.com/xml/xml_validator.asp
 		XMLWriter xmlWriter = new XMLWriter();
 		xmlWriter.setStylesheetFile(xslFilename);
-		boolean createdXML = xmlWriter.writeToFile(Constants.TEST_FOLDER + xmlFilename, athletes);
+		boolean createdXML = xmlWriter.writeToFile(xmlFilename, athletes);
 		
 		if(createdXML) {
-			HTMLWriter htmlWriter = new HTMLWriter(Constants.TEST_FOLDER);
+			HTMLWriter htmlWriter = new HTMLWriter();
 			htmlWriter.convertXMLtoHTML(xmlFilename, xslFilename, htmlFilename);
 		}		
 	}
