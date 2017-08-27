@@ -3,7 +3,25 @@
 This homework assignment is still Work in Progress.
 The task is about Decathlon competition.
 
-## 1. TASK REQUIREMENTS:
+## 1. How to run this project
+- At the moment this is Eclipse project. In order to run it, just import this as Java project into Eclipse or Spring STS.
+- You can specify your arguments where:
+  * arg[0] - inputFile
+  * arg[1] - outputFile
+- If you don't want to use arguments, program will ask you to enter via command line, example:
+  * *Input File:*
+  * test-data/Decathlon_input.txt
+  * *Output File:*
+  * test-data/Decathlon_output.txt
+- The complete paths will work as well (e.g. C:/temp/input.txt)
+- Testing file is provided: Decathlon-POJO/**test-data/Decathlon_input.txt**
+- The program will generate 2 additional files based on the output file name, so for "output.txt" there will be:
+  * output.txt_ouput.xml
+  * output.txt_output.html
+- These 2 files have the format as per file extension: so .html file can be opened in browser
+
+
+## 2. TASK REQUIREMENTS:
 
 Progress: 16 / 16
 
@@ -26,27 +44,11 @@ Progress: 16 / 16
 - [x] 15. Try to keep your code as readable as possible. We value code simplicity.
 - [x] 16. Use object-oriented approach with design patterns where applicable. *(Strategy, ...)*
 
-## 2. Resource links:
+## 3. Resource links:
 + http://en.wikipedia.org/wiki/Decathlon (see formulas are at the end of the page)
 + http://www.junit.org/ - JUnit
 + http://www.jetbrains.com/ - IntelliJ IDEA download
 
-## 3. How to run this project
-- At the moment this is Eclipse project. In order to run it, just import this as Java project into Eclipse or Spring STS.
-- You can specify your arguments where:
-  * arg[0] - inputFile
-  * arg[1] - outputFile
-- If you don't want to use arguments, program will ask you to enter via command line, example:
-  * *Input File:*
-  * test-data/Decathlon_input.txt
-  * *Output File:*
-  * test-data/Decathlon_output.txt
-- The complete paths will work as well (e.g. C:/temp/input.txt)
-- Testing file is provided: Decathlon-POJO/**test-data/Decathlon_input.txt**
-- The program will generate 2 additional files based on the output file name, so for "output.txt" there will be:
-  * output.txt_ouput.xml
-  * output.txt_output.html
-- These 2 files have the format as per file extension: so .html file can be opened in browser
-
-## Images
+## 4. Images
 ![Example of HTML output](/img/2017-08-24_22_51_41-HTML-example.png)
+![Works on IntelliJ](/img/2017-08-27_17_12_11-Decathlon-Gradle.png)
