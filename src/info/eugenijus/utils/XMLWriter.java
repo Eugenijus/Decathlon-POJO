@@ -29,7 +29,7 @@ public class XMLWriter implements DocumentWriter {
 	
 	public XMLWriter() {
 		folder = "";
-		stylesheetFile = "";
+		stylesheetFile = "style.xsl"; //default stylesheet
 	}
 	
 	/**
@@ -39,6 +39,7 @@ public class XMLWriter implements DocumentWriter {
 	 */
 	public XMLWriter(String folder) {
 		this.folder = folder;
+		stylesheetFile = "style.xsl"; //default stylesheet
 	}
 	
 	public XMLWriter(String folder, String styleSheet) {
@@ -173,5 +174,13 @@ public class XMLWriter implements DocumentWriter {
 
 	public void setStylesheetFile(String stylesheetFile) {
 		this.stylesheetFile = stylesheetFile;
+	}
+
+	public String getFolder() {
+		return folder;
+	}
+
+	public void setFolder(String folder) {
+		this.folder = folder;
 	}
 }

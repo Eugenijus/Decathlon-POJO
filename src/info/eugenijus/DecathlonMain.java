@@ -134,7 +134,7 @@ public class DecathlonMain {
 		jsonWriter.writeToFile(Constants.TEST_FOLDER + "output.json", athletes);
 		
 		String xmlFilename = "output.xml";
-		String xslFilename = "style2.xsl";
+		String xslFilename = Constants.STYLESHEET;
 		String htmlFilename = "output.html";
 		//tested with https://www.w3schools.com/xml/xml_validator.asp
 		XMLWriter xmlWriter = new XMLWriter();

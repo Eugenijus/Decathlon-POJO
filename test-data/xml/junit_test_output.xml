@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="style.xsl"?><athletes>
+  <athlete>
+    <place>DNF</place>
+    <name>Siim Susi</name>
+    <score>4200</score>
+    <results>
+      <run100M>12.61</run100M>
+      <longJump>5.0</longJump>
+      <shotPutThrow>9.22</shotPutThrow>
+      <highJump>1.5</highJump>
+      <run400M>60.39</run400M>
+      <run110MHurdles>16.43</run110MHurdles>
+      <discusThrow>21.6</discusThrow>
+      <poleVaultJump>2.6</poleVaultJump>
+      <javelinThrow>35.81</javelinThrow>
+      <run1500M>5:25.72</run1500M>
+    </results>
+  </athlete>
+  <athlete>
+    <place>DNF</place>
+    <name>Beata Kana</name>
+    <score>3199</score>
+    <results>
+      <run100M>13.04</run100M>
+      <longJump>4.53</longJump>
+      <shotPutThrow>7.79</shotPutThrow>
+      <highJump>1.55</highJump>
+      <run400M>64.72</run400M>
+      <run110MHurdles>18.74</run110MHurdles>
+      <discusThrow>24.2</discusThrow>
+      <poleVaultJump>2.4</poleVaultJump>
+      <javelinThrow>28.2</javelinThrow>
+      <run1500M>6:50.76</run1500M>
+    </results>
+  </athlete>
+</athletes>
