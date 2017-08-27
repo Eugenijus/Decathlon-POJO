@@ -13,6 +13,7 @@ public class Constants {
 	public static final String STYLE_FOLDER = "style/";
 	public static final String TEST_XML_FOLDER = TEST_FOLDER + "xml/";
 	public static final String TEST_XSD_FOLDER = TEST_FOLDER + "xsd/";
+	public static final String TEST_JUNIT_FOLDER = TEST_FOLDER + "junit-test/";
 	public static final String XSL_STYLESHEET = "style.xsl";
 	
 	public static final char DOT_CHAR = '.';

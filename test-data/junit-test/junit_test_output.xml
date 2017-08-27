@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="style.xsl"?><athletes>
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="style/style.xsl"?><athletes>
   <athlete>
-    <place>DNF</place>
+    <place>1</place>
     <name>Siim Susi</name>
     <score>4200</score>
     <results>
@@ -17,7 +17,7 @@
     </results>
   </athlete>
   <athlete>
-    <place>DNF</place>
+    <place>2</place>
     <name>Beata Kana</name>
     <score>3199</score>
     <results>

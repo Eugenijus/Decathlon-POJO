@@ -5,10 +5,13 @@ package info.eugenijus.utils;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.XMLConstants;
@@ -30,6 +33,7 @@ import org.xml.sax.SAXException;
 
 import info.eugenijus.model.Athlete;
 import info.eugenijus.model.Constants;
+import info.eugenijus.strategy.PlaceFormula;
 
 /**
  * @author Eugenijus
@@ -118,23 +122,26 @@ public class XMLWriterTest {
 	public void testWriteToFile() {
 		String xmlFile = "junit_test_output.xml";
 		String xsdFile = "output.xml.xsd";
-		String xslFilename = Constants.XSL_STYLESHEET;
+		String xslFilename = Constants.STYLE_FOLDER + Constants.XSL_STYLESHEET;
 		
 		//2) parsing a test file
 		SSVParser ssvParser = new SSVParser();
 		List<Athlete> athletes = ssvParser.parseDocumentToAthletes(Constants.TEST_FOLDER + this.testFileName);
 		
+		PlaceFormula placement = new PlaceFormula();
+		placement.markPlaces(athletes);
+		
 		//3) writing a test file as XML		
 		XMLWriter xmlWriter = new XMLWriter();
 		xmlWriter.setStylesheetFile(xslFilename);
-		assertTrue(xmlWriter.writeToFile(Constants.TEST_XML_FOLDER + xmlFile, athletes));
+		assertTrue(xmlWriter.writeToFile(Constants.TEST_JUNIT_FOLDER + xmlFile, athletes));
 		
 		//4) read XML document and validate it
 		// parse an XML document into a DOM tree
 	    DocumentBuilder parser;
 		try {
 			parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			Document document = parser.parse(new File(Constants.TEST_XML_FOLDER + xmlFile));
+			Document document = parser.parse(new File(Constants.TEST_JUNIT_FOLDER + xmlFile));
 			assertNotNull(document);
 			
 		    // create a SchemaFactory capable of understanding WXS schemas
@@ -161,5 +168,26 @@ public class XMLWriterTest {
 			e1.printStackTrace();
 		}
 		assertEquals(null, exc);
+		
+		//5 read xml file as text file and double check
+		List<String> list = new ArrayList<>();
+		String line = "";
+		try (BufferedReader br = new BufferedReader(new FileReader(Constants.TEST_JUNIT_FOLDER + xmlFile))) {
+			while ((line = br.readLine()) != null) {
+				line = line.trim();
+				//System.out.println(line);
+				list.add(line);
+			}
+		} catch (IOException e1) {
+			exc = e1;
+			System.out.println("Couldn't read file: " + Constants.TEST_JUNIT_FOLDER + xmlFile);
+			e1.printStackTrace();
+		}
+		assertEquals(null, exc);
+		
+		assertTrue(list.get(0).contains("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"));
+		assertTrue(list.get(2).contains("<place>1</place>"));
+		assertTrue(list.get(3).contains("<name>Siim Susi</name>"));
+		assertTrue(list.get(15).contains("<run1500M>5:25.72</run1500M>"));
 	}
 }
