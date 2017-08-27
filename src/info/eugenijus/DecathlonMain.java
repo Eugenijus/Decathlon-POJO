@@ -7,10 +7,8 @@ import java.util.List;
 
 import info.eugenijus.model.Athlete;
 import info.eugenijus.model.Constants;
-import info.eugenijus.model.Result;
 import info.eugenijus.strategy.PlaceFormula;
 import info.eugenijus.utils.HTMLWriter;
-import info.eugenijus.utils.JSONWriter;
 import info.eugenijus.utils.SSVParser;
 import info.eugenijus.utils.TxtWriter;
 import info.eugenijus.utils.XMLWriter;
