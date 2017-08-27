@@ -84,7 +84,7 @@ public class XMLWriterTest {
 	public void testXMLWriter() {
 		XMLWriter writer = new XMLWriter();
 		assertEquals("", writer.getFolder());
-		assertEquals("style.xsl", writer.getStylesheetFile());
+		assertEquals(Constants.STYLE_FOLDER + Constants.XSL_STYLESHEET, writer.getStylesheetFile());
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class XMLWriterTest {
 	public void testXMLWriterString() {
 		XMLWriter writer = new XMLWriter("test-folder");
 		assertEquals("test-folder", writer.getFolder());
-		assertEquals("style.xsl", writer.getStylesheetFile());
+		assertEquals("style/style.xsl", writer.getStylesheetFile());
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class XMLWriterTest {
 	public void testWriteToFile() {
 		String xmlFile = "junit_test_output.xml";
 		String xsdFile = "output.xml.xsd";
-		String xslFilename = Constants.STYLESHEET;
+		String xslFilename = Constants.XSL_STYLESHEET;
 		
 		//2) parsing a test file
 		SSVParser ssvParser = new SSVParser();
@@ -142,7 +142,7 @@ public class XMLWriterTest {
 		    assertNotNull(factory);
 		    
 		    // load a WXS schema, represented by a Schema instance
-		    Source schemaFile = new StreamSource(new File(Constants.XSD_FOLDER + xsdFile));
+		    Source schemaFile = new StreamSource(new File(Constants.TEST_XSD_FOLDER + xsdFile));
 		    assertNotNull(schemaFile);
 		    Schema schema = factory.newSchema(schemaFile);
 		    assertNotNull(schema);

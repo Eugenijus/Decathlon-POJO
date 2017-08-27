@@ -68,7 +68,7 @@ public class DecathlonMain {
 				System.out.println("Input File: ");
 				String inputLine = br.readLine();
 				if(inputLine.equals("") || inputLine.equals("0") || inputLine.equals("n")) {
-					System.out.println("Ok, will use default files: " + inputFile + " " + outputFile);
+					System.out.println("Ok, will use default files: \n" + inputFile + "\n" + outputFile);
 				} else {
 					inputFile = inputLine;
 					System.out.println("Output File: ");
@@ -106,7 +106,7 @@ public class DecathlonMain {
 //				deca.printListNicely(result);
 //			}
 		}
-		System.out.println("========== Testing Parsing and Writing ==========================");
+		System.out.println("========== Testing Parsing ==========================");
 		/**/
 		Result test1000Result = new Result();
 		Result ashtonResult = new Result();
@@ -124,17 +124,21 @@ public class DecathlonMain {
 		athletes.add(new Athlete("test9990Result", test1000Result));
 		athletes.add(new Athlete("Ashton Eaton", ashtonResult));
 		athletes.add(new Athlete("Ashton Eaton2", ashtonResult));
-				
+		
+		System.out.println("========== Testing Scoring ==========================");
+		
 		PlaceFormula placement = new PlaceFormula();
 		placement.markPlaces(athletes);
 		
+		System.out.println("========== Testing Writing ==========================");
 		TxtWriter writer = new TxtWriter();
 		writer.writeToFile(outputFile, athletes);
+		
 		JSONWriter jsonWriter = new JSONWriter();
 		jsonWriter.writeToFile(Constants.TEST_FOLDER + "output.json", athletes);
 		
 		String xmlFilename = "output.xml";
-		String xslFilename = Constants.STYLESHEET;
+		String xslFilename = Constants.STYLE_FOLDER + Constants.XSL_STYLESHEET;
 		String htmlFilename = "output.html";
 		//tested with https://www.w3schools.com/xml/xml_validator.asp
 		XMLWriter xmlWriter = new XMLWriter();

@@ -10,10 +10,10 @@ public class Constants {
 	public static final String COLON = ":";
 	public static final String SEMICOLON = ";";
 	public static final String TEST_FOLDER = "test-data/";
-	public static final String STYLE_FOLDER = TEST_FOLDER + "style/";
+	public static final String STYLE_FOLDER = "style/";
 	public static final String TEST_XML_FOLDER = TEST_FOLDER + "xml/";
-	public static final String XSD_FOLDER = TEST_FOLDER + "xsd/";
-	public static final String STYLESHEET = "style.xsl";
+	public static final String TEST_XSD_FOLDER = TEST_FOLDER + "xsd/";
+	public static final String XSL_STYLESHEET = "style.xsl";
 	
 	public static final char DOT_CHAR = '.';
 	public static final char COLON_CHAR = ':';

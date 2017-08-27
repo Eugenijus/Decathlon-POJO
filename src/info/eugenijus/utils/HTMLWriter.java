@@ -16,6 +16,10 @@ import javax.xml.transform.stream.StreamSource;
 public class HTMLWriter {
 	private String folder;
 	
+	public HTMLWriter() {
+		this.folder= "";
+	}
+	
 	public HTMLWriter(String testFolder) {
 		this.folder= testFolder;
 	}
@@ -54,9 +58,9 @@ public class HTMLWriter {
 		} 
 		finally {
 			if(isSuccess) {
-				System.out.println("Done writing HTML to: " + htmlFilename);
+				System.out.println("Done writing HTML to: " + folder + htmlFilename);
 			} else {
-				System.out.println("Couldn't write HTML to: " + htmlFilename);
+				System.out.println("Couldn't write HTML to: " + folder + htmlFilename);
 			}
 		}
 		return isSuccess;

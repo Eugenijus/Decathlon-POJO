@@ -21,6 +21,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.ProcessingInstruction;
 
 import info.eugenijus.model.Athlete;
+import info.eugenijus.model.Constants;
 import info.eugenijus.model.Result;
 
 public class XMLWriter implements DocumentWriter {
@@ -29,7 +30,7 @@ public class XMLWriter implements DocumentWriter {
 	
 	public XMLWriter() {
 		folder = "";
-		stylesheetFile = "style.xsl"; //default stylesheet
+		stylesheetFile = Constants.STYLE_FOLDER + Constants.XSL_STYLESHEET; //default stylesheet
 	}
 	
 	/**
@@ -39,7 +40,7 @@ public class XMLWriter implements DocumentWriter {
 	 */
 	public XMLWriter(String folder) {
 		this.folder = folder;
-		stylesheetFile = "style.xsl"; //default stylesheet
+		stylesheetFile = Constants.STYLE_FOLDER + Constants.XSL_STYLESHEET; //default stylesheet
 	}
 	
 	public XMLWriter(String folder, String styleSheet) {
@@ -82,20 +83,11 @@ public class XMLWriter implements DocumentWriter {
 					Element athleteElement = doc.createElement("athlete");
 					rootElement.appendChild(athleteElement);
 					
-					Element place = doc.createElement("place");
-					place.appendChild(doc.createTextNode(athlete.getPlace()));
-					athleteElement.appendChild(place);
-					
-					Element name = doc.createElement("name");
-					name.appendChild(doc.createTextNode(athlete.getName()));
-					athleteElement.appendChild(name);
-					
 					Result resultsObj = athlete.getResult();
-					
-					Element score = doc.createElement("score");
-					score.appendChild(doc.createTextNode("" + resultsObj.getTotalScore()));
-					athleteElement.appendChild(score);
-					
+					addElement(doc, athleteElement, "place", athlete.getPlace());
+					addElement(doc, athleteElement, "name", athlete.getName());
+					addElement(doc, athleteElement, "score", "" + resultsObj.getTotalScore());
+										
 					Element resultsElement = doc.createElement("results");
 					athleteElement.appendChild(resultsElement);
 					
@@ -103,46 +95,17 @@ public class XMLWriter implements DocumentWriter {
 					 * run100M, longJump, shotPutThrow, highJump, run400M, 
 					 * run110MHurdles, discusThrow, poleVaultJump, javelinThrow, run1500M
 					 */
-					//1
-					Element run100M = doc.createElement("run100M");
-					run100M.appendChild(doc.createTextNode("" + resultsObj.getRun100M()));
-					resultsElement.appendChild(run100M);
-					//2
-					Element longJump = doc.createElement("longJump");
-					longJump.appendChild(doc.createTextNode("" + resultsObj.getLongJump()));
-					resultsElement.appendChild(longJump);
-					//3
-					Element shotPutThrow = doc.createElement("shotPutThrow");
-					shotPutThrow.appendChild(doc.createTextNode("" + resultsObj.getShotPutThrow()));
-					resultsElement.appendChild(shotPutThrow);
-					//4
-					Element highJump = doc.createElement("highJump");
-					highJump.appendChild(doc.createTextNode("" + resultsObj.getHighJump()));
-					resultsElement.appendChild(highJump);
-					//5
-					Element run400M = doc.createElement("run400M");
-					run400M.appendChild(doc.createTextNode("" + resultsObj.getRun400M()));
-					resultsElement.appendChild(run400M);
-					//6
-					Element run110MHurdles = doc.createElement("run110MHurdles");
-					run110MHurdles.appendChild(doc.createTextNode("" + resultsObj.getRun110MHurdles()));
-					resultsElement.appendChild(run110MHurdles);
-					//7
-					Element discusThrow = doc.createElement("discusThrow");
-					discusThrow.appendChild(doc.createTextNode("" + resultsObj.getDiscusThrow()));
-					resultsElement.appendChild(discusThrow);
-					//8
-					Element poleVaultJump = doc.createElement("poleVaultJump");
-					poleVaultJump.appendChild(doc.createTextNode("" + resultsObj.getPoleVaultJump()));
-					resultsElement.appendChild(poleVaultJump);
-					//9
-					Element javelinThrow = doc.createElement("javelinThrow");
-					javelinThrow.appendChild(doc.createTextNode("" + resultsObj.getJavelinThrow()));
-					resultsElement.appendChild(javelinThrow);
-					//10
-					Element run1500M = doc.createElement("run1500M");
-					run1500M.appendChild(doc.createTextNode("" + resultsObj.getRun1500M()));
-					resultsElement.appendChild(run1500M);
+					//1-10
+					addElement(doc, resultsElement, "run100M", "" + resultsObj.getRun100M());
+					addElement(doc, resultsElement, "longJump", "" + resultsObj.getLongJump());
+					addElement(doc, resultsElement, "shotPutThrow", "" + resultsObj.getShotPutThrow());
+					addElement(doc, resultsElement, "highJump", "" + resultsObj.getHighJump());
+					addElement(doc, resultsElement, "run400M", "" + resultsObj.getRun400M());
+					addElement(doc, resultsElement, "run110MHurdles", "" + resultsObj.getRun110MHurdles());
+					addElement(doc, resultsElement, "discusThrow", "" + resultsObj.getDiscusThrow());
+					addElement(doc, resultsElement, "poleVaultJump", "" + resultsObj.getPoleVaultJump());
+					addElement(doc, resultsElement, "javelinThrow", "" + resultsObj.getJavelinThrow());
+					addElement(doc, resultsElement, "run1500M", "" + resultsObj.getRun1500M());
 				}
 				// write the content into xml file
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -158,14 +121,24 @@ public class XMLWriter implements DocumentWriter {
 			} catch (TransformerException tfe) {
 				tfe.printStackTrace();
 			}
-			System.out.println("Done writing XML to: " + filename);
+			System.out.println("Done writing XML to: " + folder + filename);
 			isSuccess = true;
 		} catch (IOException e) {
 			isSuccess = false;
-			System.out.println("Couldn't write XML to: " + filename);
+			System.out.println("Couldn't write XML to: " + folder + filename);
+			e.printStackTrace();
+		} catch (Exception e) {
+			isSuccess = false;
+			System.out.println("Couldn't write XML to: " + folder + filename);
 			e.printStackTrace();
 		}
 		return isSuccess;
+	}
+
+	private void addElement(Document doc, Element parentElement, String elementName, String value) {
+		Element element = doc.createElement(elementName);
+		element.appendChild(doc.createTextNode(value));
+		parentElement.appendChild(element);
 	}
 	
 	public String getStylesheetFile() {
